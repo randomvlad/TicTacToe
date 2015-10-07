@@ -1,0 +1,47 @@
+#game-area {
+	text-align: center;
+}
+
+.game-status {
+	margin: 0 0 15px 0 !important;
+}
+
+.board {
+	border: 2px solid #696969;
+	margin: 10px auto;
+}
+
+.board td { 
+	border: 1px solid #696969;
+}
+
+.board-row-tile {
+	text-align: center;
+	height: 130px;
+	width: 130px;
+	font-size: 90px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: white;
+}
+
+.board-row-tile.x-value {
+	background-color: #FF6600;
+}
+
+.board-row-tile.o-value {
+	background-color: #006699;
+}
+
+.board-row-tile.available:hover {
+	cursor: pointer;
+	background: #EEE;
+}
+
+.btn-new-game-wrap {
+	margin-top: 10px;
+}
+
+#btn-new-game {
+	width: 200px;
+}
