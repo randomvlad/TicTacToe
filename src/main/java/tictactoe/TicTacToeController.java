@@ -1,7 +1,5 @@
 package tictactoe;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +19,12 @@ public class TicTacToeController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String markTile( @ModelAttribute("game" ) Game game, @RequestParam("tile_id") String tileId,
+	public String markTile( 
+			@ModelAttribute("game" ) Game game, 
+			@RequestParam("tile_id") String tileId,
 			@RequestParam(value = "new_game", required = false, defaultValue = "false") boolean newGame,
-			@RequestParam(value = "player_go_first", required = false, defaultValue = "false") boolean playerGoFirst) {
+			@RequestParam(value = "player_go_first", required = false, defaultValue = "false") boolean playerGoFirst 
+			) {
 		
 		if ( newGame ) {
 			game.reset();

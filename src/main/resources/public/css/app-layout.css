@@ -1,5 +1,10 @@
-#game-area {
+.navbar-brand img {	
+	display: inline;	
+}
+
+.game-area {
 	text-align: center;
+	margin: 20px;
 }
 
 .game-status {
