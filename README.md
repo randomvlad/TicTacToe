@@ -25,3 +25,6 @@ A simple web app to play Tic Tac Toe against a dummy computer opponent.
 * Make sure your host file is configured for localhost. Example: map IP 127.0.0.1 to localhost.
 * Once gradle build has finished and is running, go to [http://localhost:8080/tictactoe/](http://localhost:8080/tictactoe/) and play a game.
 * To terminate gradle bootRun, kill process with CTRL + C. 
+
+## Game Screenshot
+![Game Screenshot](src/main/resources/public/images/tictactoe_screenshot_1.jpg)
