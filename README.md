@@ -27,4 +27,4 @@ A simple web app to play Tic Tac Toe against a dummy computer opponent.
 * To terminate gradle bootRun, kill process with CTRL + C. 
 
 ## Game Screenshot
-![Game Screenshot](src/main/resources/public/images/tictactoe_screenshot_1.jpg)
+<img src="src/main/resources/public/images/tictactoe_screenshot_1.png" style="width: 800px; height: 694;" />
