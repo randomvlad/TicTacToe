@@ -13,18 +13,18 @@ A simple web app to play Tic Tac Toe against a dummy computer opponent.
 
 ## Tech Stack:
 * Language: Java 8
-* Framework: Spring Boot
+* Framework: Spring Boot (v2.5.5)
 * UI Layer: HTML, CSS, Javascript, jQuery, Bootstrap, [Thymeleaf](http://www.thymeleaf.org/) (Java Template Engine)
-* Build Tool: Gradle
+* Build Tool: Gradle (v7.2)
 
 ## Install & Run:
 * Install Java 8.
-* Download and install gradle from [https://gradle.org/gradle-download/](https://gradle.org/gradle-download/).
-* git clone https://github.com/randomvlad/TicTacToe.git
-* Change directory to "TicTacToe" and run command "gradle bootRun".
-* Make sure your host file is configured for localhost. Example: map IP 127.0.0.1 to localhost.
-* Once gradle build has finished and is running, go to [http://localhost:8080/tictactoe/](http://localhost:8080/tictactoe/) and play a game.
-* To terminate gradle bootRun, kill process with CTRL + C. 
+* Clone repo: `git clone https://github.com/randomvlad/TicTacToe.git`
+* Navigate `cd TicTacToe` and run applicable [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper) command:
+  * macOS/Unix: `./gradlew bootRun`
+  * Windows: `gradlew.bat bootRun`
+* Once app is running, go to [http://localhost:8080/tictactoe/](http://localhost:8080/tictactoe/) and play a game.
+* To end app, kill process in terminal with `CTRL + C`. 
 
 ## Game Screenshot
 <img src="src/main/resources/public/images/tictactoe_screenshot_1.png" style="width: 800px; height: 694;" />

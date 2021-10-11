@@ -1,33 +1,24 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE")
-    }
+plugins {
+    id 'org.springframework.boot' version '2.5.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'spring-boot'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-jar {
-    baseName = 'tic-tac-toe'
-    version =  '0.1.0'
-}
+group = 'com.randomvlad'
+version = '0.1.0'
+sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    testCompile("junit:junit")
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+test {
+    useJUnitPlatform()
 }
