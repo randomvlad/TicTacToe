@@ -3,92 +3,82 @@ package tictactoe.model;
 import java.util.List;
 
 public class Game {
-	
-	private Board board;
-	private PlayerState playerState;
-	private boolean playerGoFirst;
-	private boolean nextMoveX;
 
-	public Game() {
-		startNew();
-	}
+    private final Board board;
+    private PlayerState playerState;
+    private boolean playerGoFirst;
+    private boolean nextMoveX;
 
-	private void startNew() {
-		playerGoFirst = true;
-		nextMoveX = true;
-		playerState = PlayerState.IN_PROGRESS;
+    public Game() {
+        board = new Board();
+        startNew(true);
+    }
 
-		if ( board == null ) {
-			board = new Board();
-		} else {
-			board.reset();
-		}
-	}
+    /**
+     * Reset existing state to start a new game.
+     *
+     * @param playerGoFirst True if human player will go first
+     */
+    public void startNew(boolean playerGoFirst) {
+        this.playerGoFirst = playerGoFirst;
+        this.nextMoveX = true;
+        this.playerState = PlayerState.IN_PROGRESS;
+        this.board.reset();
+    }
 
-	public Board getBoard() {
-		return board;
-	}
+    public Board getBoard() {
+        return board;
+    }
 
-	public void markTile( String tileId ) {
-		setTileValue( board.get( tileId ) );
-	}
-	
-	public void markTileRandom() {
-		setTileValue( board.getRandomAvailable() );
-	}
+    public void markTile(String tileId) {
+        setTileValue(board.get(tileId));
+    }
 
-	private void setTileValue( Tile tile ) {
-		if ( isGameOver() || !tile.isEmpty() ) {
-			return;
-		}
+    public void markTileRandom() {
+        setTileValue(board.getRandomAvailable());
+    }
 
-		tile.setValue( nextMoveX ? Tile.Value.X : Tile.Value.O );
-		nextMoveX = !nextMoveX;
-		
-		Tile.Value winValue = evaluateWinValue();
-		if ( winValue != null ) {
-			Tile.Value playerValue = playerGoFirst ? Tile.Value.X : Tile.Value.O;
-			playerState = winValue == playerValue ? PlayerState.WIN : PlayerState.LOSS;
-		} else {
-			playerState = board.isFull() ? PlayerState.DRAW : PlayerState.IN_PROGRESS;
-		}
-	}
-	
-	private Tile.Value evaluateWinValue() {
+    public boolean isPlayerGoFirst() {
+        return playerGoFirst;
+    }
 
-		List<List<Tile>> allLines = board.getAllLines();
+    public boolean isGameOver() {
+        return playerState.isGameOver();
+    }
 
-		for ( List<Tile> line : allLines ) {
-			Tile first = line.get( 0 );
-			if ( first.isEmpty() ) {
-				continue;
-			}
+    public PlayerState getPlayerState() {
+        return playerState;
+    }
 
-			if ( line.stream().allMatch( t -> t.getValue() == first.getValue() ) ) {
-				return first.getValue();
-			}
-		}
+    private void setTileValue(Tile tile) {
+        if (isGameOver() || !tile.isEmpty()) {
+            return;
+        }
 
-		return null;
-	}
+        tile.setValue(nextMoveX ? Tile.Value.X : Tile.Value.O);
+        nextMoveX = !nextMoveX;
 
-	public void setPlayerGoFirst( boolean flag ) {
-		this.playerGoFirst = flag;
-	}
+        Tile.Value winValue = evaluateWinValue();
+        if (winValue != null) {
+            Tile.Value playerValue = playerGoFirst ? Tile.Value.X : Tile.Value.O;
+            playerState = winValue == playerValue ? PlayerState.WIN : PlayerState.LOSS;
+        } else {
+            playerState = board.isFull() ? PlayerState.DRAW : PlayerState.IN_PROGRESS;
+        }
+    }
 
-	public boolean isPlayerGoFirst() {
-		return playerGoFirst;
-	}
-	
-	public boolean isGameOver() {
-		return playerState.isGameOver();
-	}
+    private Tile.Value evaluateWinValue() {
+        for (List<Tile> line : board.getAllLines()) {
+            Tile first = line.get(0);
+            if (first.isEmpty()) {
+                continue;
+            }
 
-	public void reset() {
-		startNew();
-	}
-	
-	public PlayerState getPlayerState() {
-		return playerState;
-	}
+            if (line.stream().allMatch(t -> t.getValue() == first.getValue())) {
+                return first.getValue();
+            }
+        }
+
+        return null;
+    }
 }
