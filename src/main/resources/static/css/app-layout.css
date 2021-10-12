@@ -1,52 +1,53 @@
-.navbar-brand img {	
-	display: inline;	
+.navbar-brand img {
+  display: inline;
 }
 
 .game-area {
-	text-align: center;
-	margin: 20px;
+  text-align: center;
+  margin: 20px;
 }
 
 .game-status {
-	margin: 0 0 15px 0 !important;
+  margin: 0 auto 15px auto !important; max-width: 500px;
 }
 
 .board {
-	border: 2px solid #696969;
-	margin: 10px auto;
+  border: 2px solid #696969;
+  margin: 10px auto;
 }
 
-.board td { 
-	border: 1px solid #696969;
+.board td {
+  border: 1px solid #696969;
+  padding: 0;
 }
 
 .board-row-tile {
-	text-align: center;
-	height: 130px;
-	width: 130px;
-	font-size: 90px;
-	text-transform: uppercase;
-	font-weight: bold;
-	color: white;
+  text-align: center;
+  height: 130px;
+  width: 130px;
+  font-size: 90px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
 }
 
 .board-row-tile.x-value {
-	background-color: #FF6600;
+  background-color: #FF6600;
 }
 
 .board-row-tile.o-value {
-	background-color: #006699;
+  background-color: #006699;
 }
 
 .board-row-tile.available:hover {
-	cursor: pointer;
-	background: #EEE;
+  cursor: pointer;
+  background: #EEE;
 }
 
 .btn-new-game-wrap {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 #btn-new-game {
-	width: 200px;
+  width: 200px;
 }

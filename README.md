@@ -14,7 +14,7 @@ A simple web app to play Tic Tac Toe against a dummy computer opponent.
 ## Tech Stack:
 * Language: Java 8
 * Framework: Spring Boot (v2.5.5)
-* UI Layer: HTML, CSS, Javascript, jQuery, Bootstrap, [Thymeleaf](http://www.thymeleaf.org/) (Java Template Engine)
+* UI Layer: HTML, CSS, Javascript, jQuery, [Bootstrap](https://getbootstrap.com/) (v5), [Thymeleaf](http://www.thymeleaf.org/)
 * Build Tool: Gradle (v7.2)
 
 ## Install & Run:
@@ -26,5 +26,8 @@ A simple web app to play Tic Tac Toe against a dummy computer opponent.
 * Once app is running, go to [http://localhost:8080/tictactoe/](http://localhost:8080/tictactoe/) and play a game.
 * To end app, kill process in terminal with `CTRL + C`. 
 
-## Game Screenshot
-<img src="src/main/resources/static/images/tictactoe_screenshot_1.png" style="width: 800px; height: 694;" />
+## Game Screenshots:
+
+<img src="src/main/resources/static/images/tictactoe_screenshot_win.png" style="width: 800px; height: 611px;" />
+<br />
+<img src="src/main/resources/static/images/tictactoe_screenshot_loss.png" style="width: 800px; height: 611px;" />
