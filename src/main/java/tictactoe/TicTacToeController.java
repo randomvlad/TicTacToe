@@ -107,6 +107,4 @@ public class TicTacToeController {
         }
         return appUser;
     }
-
-    // TODO: bring back /tictactoe API path prefix?
 }
