@@ -13,7 +13,7 @@ A simple web app to play Tic Tac Toe against a dummy computer opponent.
 
 ## Tech Stack:
 * Language: Java 8
-* Framework: Spring Boot (v2.5.5)
+* Framework: Spring Boot (v2.5.6)
 * UI Layer: HTML, CSS, Javascript, jQuery, [Bootstrap](https://getbootstrap.com/) (v5), [Thymeleaf](http://www.thymeleaf.org/)
 * Build Tool: Gradle (v7.2)
 
