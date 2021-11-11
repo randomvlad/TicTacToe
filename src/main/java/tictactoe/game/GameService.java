@@ -94,7 +94,7 @@ public class GameService {
     private GameState evaluateGameState(List<List<String>> rows) {
         for (List<String> line : BoardUtil.getAllLines(rows)) {
             String firstTile = line.get(0);
-            if (firstTile.equals(BoardTile.EMPTY.toString())) {
+            if (firstTile.isEmpty()) {
                 continue;
             }
 
@@ -104,7 +104,7 @@ public class GameService {
         }
 
         for (List<String> row : rows) {
-            if (row.stream().anyMatch(tile -> tile.equals(BoardTile.EMPTY.toString()))) {
+            if (row.stream().anyMatch(String::isEmpty)) {
                 return GameState.IN_PROGRESS;
             }
         }

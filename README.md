@@ -12,13 +12,13 @@ A simple web app to play Tic Tac Toe against a dummy computer opponent.
 * Player can leave the game and come back later to finish it (as long as his session persists).
 
 ## Tech Stack:
-* Language: Java 8
+* Language: Java 11
 * Framework: Spring Boot (v2.5.6)
 * UI Layer: HTML, CSS, Javascript, jQuery, [Bootstrap](https://getbootstrap.com/) (v5), [Thymeleaf](http://www.thymeleaf.org/)
 * Build Tool: Gradle (v7.2)
 
 ## Install & Run:
-* Install Java 8.
+* Install Java 11.
 * Clone repo: `git clone https://github.com/randomvlad/TicTacToe.git`
 * Navigate `cd TicTacToe` and run applicable [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper) command:
   * macOS/Unix: `./gradlew bootRun`

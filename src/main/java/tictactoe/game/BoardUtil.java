@@ -33,7 +33,7 @@ class BoardUtil {
 
             for (int columnIndex = 0; columnIndex < rows.size(); columnIndex++) {
                 String tileValue = row.get(columnIndex);
-                if (tileValue.equals("")) {
+                if (tileValue.isEmpty()) {
                     available.add(rowIndex + "-" + columnIndex);
                 }
             }
