@@ -1,11 +1,12 @@
 package tictactoe.user.entity;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-@org.springframework.stereotype.Repository
-public interface AppUserRepository extends Repository<AppUser, Long> {
-
-    AppUser save(AppUser user);
+@Transactional(readOnly = true)
+@Repository
+public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     AppUser findByUsername(String name);
 }

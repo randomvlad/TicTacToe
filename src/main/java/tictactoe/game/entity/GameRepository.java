@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tictactoe.user.entity.AppUser;
 
 @Repository
+@Transactional(readOnly = true)
 public interface GameRepository extends JpaRepository<Game, Long> {
 
     Game findFirstByAppUserOrderByIdDesc(AppUser appUser);

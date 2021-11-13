@@ -2,14 +2,15 @@ package tictactoe.game;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tictactoe.game.entity.Game;
 import tictactoe.game.entity.Game.GameState;
 import tictactoe.game.entity.Game.PlayerType;
 import tictactoe.game.entity.GameRepository;
 import tictactoe.user.entity.AppUser;
 
-@Component
+@Service
 public class GameService {
 
     private final GameRepository gameRepository;
@@ -19,7 +20,7 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
-    // TODO: transactional to keep delete & save
+    @Transactional
     public Game create(AppUser appUser, boolean playerGoFirst) {
 
         gameRepository.deleteUserGames(appUser);
@@ -44,10 +45,6 @@ public class GameService {
         return game;
     }
 
-    public void update(Game game) {
-        gameRepository.save(game);
-    }
-
     public Game getLastGame(AppUser appUser) {
         return gameRepository.findFirstByAppUserOrderByIdDesc(appUser);
     }
@@ -61,7 +58,7 @@ public class GameService {
 
     public void takeTurn(Game game, String tileId) {
         if (game.getState() != GameState.IN_PROGRESS) {
-            return; // TODO: is this necessary? Can only  mark if Game is in progress (aka no winner or draw)
+            return;
         }
 
         String[] indices = tileId.split("-");
@@ -88,7 +85,7 @@ public class GameService {
             game.setNextMove(null); // Game over. Null out
         }
 
-        update(game);
+        gameRepository.save(game);
     }
 
     private GameState evaluateGameState(List<List<String>> rows) {
