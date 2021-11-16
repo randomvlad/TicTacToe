@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tictactoe.game.entity.Game;
 import tictactoe.game.entity.Game.GameState;
+import tictactoe.game.entity.Game.PlayerNumber;
 import tictactoe.game.entity.Game.PlayerType;
 import tictactoe.game.entity.GameRepository;
 import tictactoe.user.entity.AppUser;
@@ -39,7 +40,7 @@ class GameServiceTest {
 
         assertThat(game.getAppUser()).isSameAs(appUser);
         assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);
-        assertThat(game.getNextMove()).isEqualTo("PLAYER_1");
+        assertThat(game.getNextMove()).isEqualTo(PlayerNumber.PLAYER_1);
         assertThat(game.getPlayer1Type()).isEqualTo(PlayerType.HUMAN);
         assertThat(game.getPlayer2Type()).isEqualTo(PlayerType.COMPUTER);
         assertThat(game.getRows()).isEqualTo(BoardUtil.createEmpty());
@@ -57,7 +58,7 @@ class GameServiceTest {
 
         assertThat(game.getAppUser()).isSameAs(appUser);
         assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);
-        assertThat(game.getNextMove()).isEqualTo("PLAYER_1");
+        assertThat(game.getNextMove()).isEqualTo(PlayerNumber.PLAYER_1);
         assertThat(game.getPlayer1Type()).isEqualTo(PlayerType.COMPUTER);
         assertThat(game.getPlayer2Type()).isEqualTo(PlayerType.HUMAN);
         assertThat(game.getRows()).isEqualTo(BoardUtil.createEmpty());
@@ -79,7 +80,7 @@ class GameServiceTest {
 
         service.takeTurn(game, "1-1");
 
-        assertThat(game.getNextMove()).isEqualTo("PLAYER_2");
+        assertThat(game.getNextMove()).isEqualTo(PlayerNumber.PLAYER_2);
         assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);
         assertRows(//@formatter:off
                 game,
@@ -90,7 +91,7 @@ class GameServiceTest {
 
         service.takeTurn(game, "0-1");
 
-        assertThat(game.getNextMove()).isEqualTo("PLAYER_1");
+        assertThat(game.getNextMove()).isEqualTo(PlayerNumber.PLAYER_1);
         assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);
         assertRows(//@formatter:off
                 game,

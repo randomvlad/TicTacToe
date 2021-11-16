@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tictactoe.game.entity.Game;
 import tictactoe.game.entity.Game.GameState;
+import tictactoe.game.entity.Game.PlayerNumber;
 import tictactoe.game.entity.Game.PlayerType;
 import tictactoe.game.entity.GameRepository;
 import tictactoe.user.entity.AppUser;
@@ -28,7 +29,7 @@ public class GameService {
         Game game = new Game();
         game.setAppUser(appUser);
         game.setState(GameState.IN_PROGRESS);
-        game.setNextMove("PLAYER_1"); // TODO: should this be an enum ?
+        game.setNextMove(PlayerNumber.PLAYER_1);
 
         if (playerGoFirst) {
             game.setPlayer1Type(PlayerType.HUMAN);
@@ -67,12 +68,12 @@ public class GameService {
         }
 
         BoardTile tile;
-        if (game.getNextMove().equalsIgnoreCase("PLAYER_1")) {
+        if (game.getNextMove() == PlayerNumber.PLAYER_1) {
             tile = BoardTile.X;
-            game.setNextMove("PLAYER_2");
+            game.setNextMove(PlayerNumber.PLAYER_2);
         } else {
             tile = BoardTile.O;
-            game.setNextMove("PLAYER_1");
+            game.setNextMove(PlayerNumber.PLAYER_1);
         }
 
         int rowIndex = Integer.parseInt(indices[0]);

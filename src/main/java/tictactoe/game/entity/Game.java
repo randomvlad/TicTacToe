@@ -20,6 +20,11 @@ public class Game {
         COMPUTER;
     }
 
+    public enum PlayerNumber {
+        PLAYER_1,
+        PLAYER_2
+    }
+
     public enum GameState {
         IN_PROGRESS,
         PLAYER_1_WIN,
@@ -38,7 +43,7 @@ public class Game {
 
     private PlayerType player2Type;
 
-    private String nextMove;
+    private PlayerNumber nextMove;
 
     private GameState state;
 
@@ -78,11 +83,11 @@ public class Game {
         this.player2Type = player2Type;
     }
 
-    public String getNextMove() {
+    public PlayerNumber getNextMove() {
         return nextMove;
     }
 
-    public void setNextMove(String nextMove) {
+    public void setNextMove(PlayerNumber nextMove) {
         this.nextMove = nextMove;
     }
 
