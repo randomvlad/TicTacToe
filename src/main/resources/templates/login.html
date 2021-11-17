@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/base :: baseHead(~{::title}, ~{}, ~{::link})">
+  <title>Tic Tac Toe - Log In</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body class="text-center">
+
+<main class="form-login shadow">
+
+  <form th:action="@{/login}" method="post">
+    <div class="mb-3">
+      <img src="images/tic-tac-toe.png" alt="Tic Tac Toe" class="align-middle" />
+      <span class="h2 fw-normal align-middle">Tic Tac Toe</span>
+    </div>
+
+    <div th:if="${param.logout}" class="alert alert-primary alert-dismissible fade show mb-3" role="alert">
+      You have been logged out.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+      Invalid username and password.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="form-floating">
+      <input name="username" type="text" class="form-control" id="floatingInput" placeholder="rick" />
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating">
+      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="pickle" />
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input name="remember-me" type="checkbox" /> Remember me
+      </label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Log In</button>
+
+    <p class="mt-5 mb-3 text-muted" th:insert="fragments/footer :: footer"></p>
+  </form>
+</main>
+
+</body>
+</html>

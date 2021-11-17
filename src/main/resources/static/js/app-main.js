@@ -12,4 +12,8 @@ $(document).ready(function () {
     $("#form_mark_tile").submit();
   });
 
+  $("#link-user-logout").click(function (event) {
+    $("#form-logout").submit();
+  });
+
 });

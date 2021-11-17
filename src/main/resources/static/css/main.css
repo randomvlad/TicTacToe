@@ -51,3 +51,12 @@
 #btn-new-game {
   width: 200px;
 }
+
+.header-container .user-info {
+  float: right;
+  padding-right: 25px;
+}
+
+.header-container .user-info form {
+  display: inline;
+}

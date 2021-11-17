@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<body>
+<header class="header-container">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand">
+        <img alt="Tic Tac Toe" src="images/tic-tac-toe.png" class="align-middle" />
+        Tic Tac Toe
+      </span>
+      <div class="user-info">
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="images/person-circle.svg" alt="Person Circle" width="24" height="24">
+            <span sec:authentication="name"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1">
+            <li>
+              <a id="link-user-logout" class="dropdown-item" href="#">Log Out</a>
+              <form id="form-logout" th:action="@{/logout}" method="post"></form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+</body>
+</html>
