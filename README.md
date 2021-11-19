@@ -8,15 +8,17 @@ A secured web app to play Tic Tac Toe against a dummy computer opponent.
 * User game data is persisted to an in-memory database.
 * App is secured with a username & password login. Database is seeded with two usernames: `rick` and `morty`. Both have the same password `pickle`.
 * UI renders each time through a full page refresh (in the name of simplicity).
-* Player can leave/logout and come back later to finish the game (as long as the server is running).
+* Player can leave/logout and come back later to finish the game (as long as the server hasn't been restarted).
 * Unit tests: [src/test/java/tictactoe/*](src/test/java/tictactoe)
+
+> ℹ️ Want to know more about the project and lessons learned along the way? See: [Little Code Gems - Questions & Answers](docs/code-gems.md).
 
 ## Tech Stack:
 | | Technology |
 |---|---|
 | __Language__ | Java 11 |
 | __Framework__ | Spring Boot (v2.5) |
-| __Data Layer__ | H2 database, JPA & Hibernate | 
+| __Data Layer__ | H2 Database, JPA & Hibernate | 
 | __UI Layer__ | HTML, CSS, Javascript, jQuery, [Bootstrap](https://getbootstrap.com/) (v5), [Thymeleaf](http://www.thymeleaf.org/) |
 | __Testing__ | JUnit 5, Mockito, AssertJ |
 | __Build Tool__ | Gradle (v7.2) |
