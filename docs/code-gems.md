@@ -24,6 +24,27 @@ More Info: [SO - Map JSON column with JPA and Hibernate](https://stackoverflow.c
 
 ### How to disable Hypersistence banner in logs from hibernate-types dependency?
 
-Vlad Mihalcea's hibernate-types library is very useful, but logs a large banner at startup. It can be disabled with `hibernate.types.print.banner=false` property in [hibernate-types.properties](/src/main/resources/hibernate-types.properties) file.
+The hibernate-types library is very useful, but logs a large banner at startup. It can be disabled with `hibernate.types.print.banner=false` property in [hibernate-types.properties](/src/main/resources/hibernate-types.properties) file.
 
 More Info: [SO - Disable the Hypersistence banner in Spring Boot](https://stackoverflow.com/questions/61118423/how-to-disable-the-hypersistence-banner-when-using-hibernate-types-52-in-spring)
+
+### Why use AssertJ library in unit tests?
+
+[AssertJ](https://assertj.github.io/doc/) provides a fluent assertion syntax along with lots of built-in conveniences. It tends to result in slightly easier to read code, stronger assertion checks and more user-friendly test failures. 
+
+Examples:
+
+```java
+String veryLongMessage = "many words but only one potato ...";
+assertThat(veryLongMessage).containsOnlyOnce("potato");
+
+List<String> list = Arrays.asList("b", "c", "a");
+assertThat(list).hasSize(3).containsExactlyInAnyOrder("a", "b", "c");
+
+Map<String, String> map = Map.of("potato", "tasty");
+assertThat(map).hasSize(1).containsEntry("potato", "tasty");
+
+assertThatThrownBy(() -> someMethodThatThrows())
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("out of potatoes");
+```
