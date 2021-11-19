@@ -48,3 +48,9 @@ assertThatThrownBy(() -> someMethodThatThrows())
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("out of potatoes");
 ```
+
+### What is the project's naming convention for unit test methods?
+
+Unit test methods follow the Roy Osherove's naming strategy: [Naming Standards for Unit Tests](https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html). However, your millage may vary and a more recent trend seems to favor the naming strategy outlined by [Vladimir Khorikov](https://enterprisecraftsmanship.com/posts/you-naming-tests-wrong/). 🙃
+
+More Info: [SO - Unit Test Naming Best Practices](https://stackoverflow.com/questions/155436/unit-test-naming-best-practices).
