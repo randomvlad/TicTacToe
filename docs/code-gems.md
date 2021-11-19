@@ -4,6 +4,12 @@ Most software projects require countless inquiries, considerations and ultimatel
 
 ## Questions & Answers
 
+### Why does Spring JPA warn about "spring.jpa.open-in-view is enabled by default" at startup?
+
+In a small project, the warning and its implications can likely be ignored (also you might still be inviting more trouble than it is worth down the road). However, the enabled-by-default setting can have very adverse performance implications in a production environment with high volume of traffic. It is recommended to start new projects with `spring.jpa.open-in-view=false` property in [application.properties](/src/main/resources/application.properties) file.
+
+For a proper and in-depth explanation, see: [The Open Session In View Anti-Pattern](https://vladmihalcea.com/the-open-session-in-view-anti-pattern/). If you are feeling brave, check out the spirited discussion in [Spring Boot Issue #7107](https://github.com/spring-projects/spring-boot/issues/7107).  
+
 ### What's a convenient way to map JSON to a database table column?
 
 Tic Tac Toe's board data is stored as JSON in table column `game.rows`. A common approach to achieve such a mapping can be either through custom serialization methods or an attribute converter (examples: [Baeldung - Persist a JSON Object Using Hibernate](https://www.baeldung.com/hibernate-persist-json-object)). However, neither is particularly convenient and requires extra code. An annotation driven solution can be more elegant and compact, and that's exactly what [Vlad Mihalcea's hibernate-types](https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52/2.14.0) library provides.
