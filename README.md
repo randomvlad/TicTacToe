@@ -2,7 +2,7 @@
 
 A secured web app to play Tic Tac Toe against a dummy computer opponent.
 
-## Features & Notes:
+## Features & Notes
 * Play a game on a 3x3 board with an option to go first or after the computer opponent.
 * Computer opponent's AI chooses random squares, except when going first in which case the center tile is always picked.
 * User game data is persisted to an in-memory database. As long as the server is not restarted, a player can leave and return to finish an in-progress game.  
@@ -11,7 +11,7 @@ A secured web app to play Tic Tac Toe against a dummy computer opponent.
 * For more info about the project and lessons learned, see: [Little Code Gems](docs/code-gems.md).
 * Unit tests: [src/test/java/tictactoe/*](src/test/java/tictactoe)
 
-## Tech Stack:
+## Tech Stack
 | | Technology |
 |---|---|
 | __Language__ | Java 11 |
@@ -21,7 +21,7 @@ A secured web app to play Tic Tac Toe against a dummy computer opponent.
 | __Testing__ | JUnit 5, Mockito, AssertJ |
 | __Build Tool__ | Gradle (v7.2) |
 
-## Install & Run:
+## Install & Run
 * Install Java 11.
 * Clone repo: `git clone https://github.com/randomvlad/TicTacToe.git`
 * Navigate `cd TicTacToe` and run applicable [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper) command:
@@ -31,7 +31,7 @@ A secured web app to play Tic Tac Toe against a dummy computer opponent.
 * Log in with username `rick` or `morty` and password `pickle` to play a game.
 * To end app, kill process in terminal with `CTRL + C`. 
 
-## Game Screenshots:
+## Game Screenshots
 <img src="docs/images/tictactoe_screenshot_login.png" style="width: 800px; height: 700px;" />
 <br />
 <img src="docs/images/tictactoe_screenshot_win.png" style="width: 800px; height: 700px;" />
