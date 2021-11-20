@@ -1,8 +1,31 @@
 # Little Code Gems
 
-Most software projects require countless inquiries, considerations and ultimately decisions. Seemingly simple questions can often turn into surprisingly elaborate and deep rabbit holes. These "side quests" may appear insignificant, but overtime add up to a considerable amount of knowledge and expertise. The lessons learned can become little gems that stay with you long after a particular project. 
+Most software projects require countless inquiries, considerations and ultimately decisions. Seemingly simple questions can often turn into surprisingly elaborate and deep rabbit holes. These "side quests" may appear insignificant, but overtime add up to a considerable amount of knowledge, expertise and intuition. The lessons learned can become little gems that stay with you long after a particular project. 
 
 ## Questions & Answers
+
+### How to connect to H2 with a database browser?
+
+It's not as straightforward as one would hope. H2 memory database is only visible to the JVM process that opens it. Connecting to the seemingly-same database through a browser (example: IntelliJ Database Tool) would not show the expected tables and data. One solution is to configure H2 to store its data to a file and enable auto server mode. Update `application.properties` as follows:
+
+```properties
+# IMPORTANT:
+# - Don't forget to include ";AUTO_SERVER=true" at the end of url
+# - Make sure all directories exist in {PATH_OF_YOUR_CHOICE}. Create them if necessary   
+spring.datasource.url=jdbc:h2:file:{PATH_OF_YOUR_CHOICE}/tictactoe;AUTO_SERVER=true
+spring.datasource.username=sa
+spring.datasource.password=
+spring.datasource.driverClassName=org.h2.Driver
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=create-drop
+
+# Optional properties to help monitor SQL queries
+spring.jpa.properties.hibernate.show_sql=true
+spring.jpa.properties.hibernate.use_sql_comments=true
+spring.jpa.properties.hibernate.format_sql=true
+```
+
+More Info: [YouTube - Spring Boot Java H2 Database Setup in IntelliJ](https://www.youtube.com/watch?v=8QBJMxyXIqc)
 
 ### Why does Spring JPA warn about "spring.jpa.open-in-view is enabled by default" at startup?
 
