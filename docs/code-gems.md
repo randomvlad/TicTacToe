@@ -86,10 +86,11 @@ More Info: [SO - Unit Test Naming Best Practices](https://stackoverflow.com/ques
 
 ### How to compare enum values in Thymeleaf templates?
 
-In short, it's somewhat clumsy and painful. Two common approaches are:
-1. Use `T()` operator. Example: `th:if="${state == T(tictactoe.game.entity.Game.GameState).IN_PROGRESS}"`. Rather ugly and verbose due to needing the package path. Will cause problems during refactoring.
-2. Convert to string `state.name()` before each comparison, but that mostly negates making the enum available to Thymeleaf in the first place. Does not hold up during refactoring either. 
+In short, it's somewhat clumsy and painful. A couple approaches:
+1. Use `T()` operator. Example: `th:if="${state == T(tictactoe.game.entity.Game.GameState).IN_PROGRESS}"`. Rather ugly and verbose due to needing the package path. May cause problems during refactoring.
+2. Convert to string `state.name()` before each comparison, but that mostly negates making the enum available to Thymeleaf in the first place. Complicates refactoring as well.
+3. Add extra methods to enum itself. Example: `state.isInProgress()`. May not be practical if there are a lot enum values and introduces extra code strictly for sake of Thymeleaf. 
 
-These lackluster options may convince some to NOT pass enums to the view layer at all. Rather convert enums to a string in a single place before passing it to the view layer. Hopefully one day Thymeleaf may introduce a more developer friendly solution.   
+These lackluster options may prompt some to avoid passing enums to the view layer at all if template logic has a lot of comparisons. Rather convert enums to a string in a single place before passing it to the view layer. Hopefully one day Thymeleaf will have a more developer friendly solution.   
 
 More Info: [SO - Comparing Enum Constants in Thymeleaf](https://stackoverflow.com/questions/24937441/comparing-the-enum-constants-in-thymeleaf)
