@@ -35,7 +35,7 @@ For a proper and in-depth explanation, see: [The Open Session In View Anti-Patte
 
 ### What's a convenient way to map JSON to a database table column?
 
-Tic Tac Toe's board data is stored as JSON in table column `game.rows`. A common approach to achieve such a mapping can be either through custom serialization methods or an attribute converter (examples: [Baeldung - Persist a JSON Object Using Hibernate](https://www.baeldung.com/hibernate-persist-json-object)). However, neither is particularly convenient and requires extra code. An annotation driven solution can be more elegant and compact, and that's exactly what [Vlad Mihalcea's hibernate-types](https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52/2.14.0) library provides.
+Tic Tac Toe's board data is stored as JSON in table column `game.rows`. The mapping can be handled with either custom serialization methods or an attribute converter (examples: [Baeldung - Persist a JSON Object Using Hibernate](https://www.baeldung.com/hibernate-persist-json-object)). However, neither is particularly convenient and requires extra code. An annotation driven solution can be more elegant and compact, and that's exactly what [Vlad Mihalcea's hibernate-types](https://github.com/vladmihalcea/hibernate-types) library provides.
 
 Example:
 ```java
