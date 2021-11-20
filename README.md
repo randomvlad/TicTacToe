@@ -4,14 +4,12 @@ A secured web app to play Tic Tac Toe against a dummy computer opponent.
 
 ## Features & Notes:
 * Play a game on a 3x3 board with an option to go first or after the computer opponent.
-* Computer opponent's AI is simple and chooses squares at random (except when going first, then center tile is always picked).
-* User game data is persisted to an in-memory database.
-* App is secured with a username & password login. Database is seeded with two usernames: `rick` and `morty`. Both have the same password `pickle`.
-* UI renders each time through a full page refresh (in the name of simplicity).
-* Player can leave/logout and come back later to finish the game (as long as the server hasn't been restarted).
+* Computer opponent's AI chooses random squares, except when going first in which case the center tile is always picked.
+* User game data is persisted to an in-memory database. As long as the server is not restarted, a player can leave and return to finish an in-progress game.  
+* App is secured with a username & password login. Database is seeded with two usernames `rick` and `morty`. Both have the same password `pickle`.
+* UI renders each time through a full page refresh in the name of simplicity.
+* For more info about the project and lessons learned, see: [Little Code Gems](docs/code-gems.md).
 * Unit tests: [src/test/java/tictactoe/*](src/test/java/tictactoe)
-
-> ℹ️ Want to know more about the project and lessons learned along the way? See: [Little Code Gems](docs/code-gems.md).
 
 ## Tech Stack:
 | | Technology |
