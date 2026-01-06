@@ -1,6 +1,6 @@
-# Tic Tac Toe
+# Tic-tac-toe App
 
-A secured web app to play Tic Tac Toe against a dummy computer opponent.
+A secured web app to play Tic-tac-toe against a dummy computer opponent.
 
 ## Features & Notes
 * Play a game on a 3x3 board with an option to go first or after the computer opponent.
@@ -14,7 +14,7 @@ A secured web app to play Tic Tac Toe against a dummy computer opponent.
 ## Tech Stack
 | | Technology |
 |---|---|
-| __Language__ | Java 11 |
+| __Language__ | Java 17 |
 | __Framework__ | Spring Boot (v2.5) |
 | __Data Layer__ | H2 Database, JPA & Hibernate | 
 | __UI Layer__ | HTML, CSS, Javascript, jQuery (v3.6), [Bootstrap](https://getbootstrap.com/) (v5), [Thymeleaf](http://www.thymeleaf.org/) |
@@ -22,7 +22,8 @@ A secured web app to play Tic Tac Toe against a dummy computer opponent.
 | __Build Tool__ | Gradle (v7.2) |
 
 ## Install & Run
-* Install Java 11.
+* Install Java 17.
+  * Recommend: use [SDKMAN](https://sdkman.io/install/) to effortlessly install and switch between different Java versions and distros.
 * Clone repo: `git clone https://github.com/randomvlad/TicTacToe.git`
 * Navigate `cd TicTacToe` and run applicable [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper) command:
   * macOS/Unix: `./gradlew bootRun`
@@ -32,8 +33,8 @@ A secured web app to play Tic Tac Toe against a dummy computer opponent.
 * To end app, kill process in terminal with `CTRL + C`. 
 
 ## Game Screenshots
-<img src="docs/images/tictactoe_screenshot_login.png" style="width: 800px; height: 700px;" />
+<img src="docs/images/tictactoe_screenshot_login.png" style="width: 800px; height: 700px;" alt="Tic-tac-toe app login screenshot" />
 <br />
-<img src="docs/images/tictactoe_screenshot_win.png" style="width: 800px; height: 700px;" />
+<img src="docs/images/tictactoe_screenshot_win.png" style="width: 800px; height: 700px;" alt="Tic-tac-toe app won game screenshot" />
 <br />
-<img src="docs/images/tictactoe_screenshot_loss.png" style="width: 800px; height: 700px;" />
+<img src="docs/images/tictactoe_screenshot_loss.png" style="width: 800px; height: 700px;" alt="Tic-tac-toe app lost game screenshot" />
