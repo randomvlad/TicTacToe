@@ -16,7 +16,6 @@ spring.datasource.url=jdbc:h2:file:{PATH_OF_YOUR_CHOICE}/tictactoe;AUTO_SERVER=t
 spring.datasource.username=sa
 spring.datasource.password=
 spring.datasource.driverClassName=org.h2.Driver
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.jpa.hibernate.ddl-auto=create-drop
 
 # Optional properties to help monitor SQL queries
