@@ -6,9 +6,9 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,15 +20,11 @@ import tictactoe.user.entity.AppUserRepository;
 @ExtendWith(MockitoExtension.class)
 class AppUserDetailsServiceTest {
 
+    @InjectMocks
     private AppUserDetailsService service;
 
     @Mock
     private AppUserRepository mockRepository;
-
-    @BeforeEach
-    void setUp() {
-        service = new AppUserDetailsService(mockRepository);
-    }
 
     @Test
     void loadUserByUsername_ValidUsername_ExpectedUserDetails() {

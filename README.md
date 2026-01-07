@@ -15,11 +15,11 @@ A secured web app to play Tic-tac-toe against a dummy computer opponent.
 | | Technology |
 |---|---|
 | __Language__ | Java 17 |
-| __Framework__ | Spring Boot (v2.5) |
-| __Data Layer__ | H2 Database, JPA & Hibernate | 
-| __UI Layer__ | HTML, CSS, Javascript, jQuery (v3.6), [Bootstrap](https://getbootstrap.com/) (v5), [Thymeleaf](http://www.thymeleaf.org/) |
+| __Framework__ | Spring Boot v4.0 |
+| __Data Layer__ | H2 Database, JPA & Hibernate v7.2 | 
+| __UI Layer__ | HTML, CSS, Javascript, jQuery v3.6, [Bootstrap](https://getbootstrap.com/) v5, [Thymeleaf](http://www.thymeleaf.org/) |
 | __Testing__ | JUnit 5, Mockito, AssertJ |
-| __Build Tool__ | Gradle (v7.2) |
+| __Build Tool__ | Gradle v9.2 |
 
 ## Install & Run
 * Install Java 17.

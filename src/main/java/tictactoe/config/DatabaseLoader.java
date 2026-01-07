@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import tictactoe.user.AppUserDetailsService;
 import tictactoe.user.entity.AppUser;
 import tictactoe.user.entity.AppUserRepository;
 
@@ -15,10 +15,12 @@ public class DatabaseLoader implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(DatabaseLoader.class);
 
     private final AppUserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public DatabaseLoader(AppUserRepository repository) {
+    public DatabaseLoader(AppUserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class DatabaseLoader implements CommandLineRunner {
     private void createUser(String username, String password) {
         AppUser user = new AppUser();
         user.setUsername(username);
-        user.setPassword(AppUserDetailsService.PASSWORD_ENCODER.encode(password));
+        user.setPassword(passwordEncoder.encode(password));
 
         repository.save(user);
 

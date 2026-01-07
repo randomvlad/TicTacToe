@@ -1,47 +1,53 @@
 package tictactoe.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import tictactoe.user.AppUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-public class AppConfigSecurity extends WebSecurityConfigurerAdapter {
+public class AppConfigSecurity {
 
-    private final AppUserDetailsService userDetailsService;
-
-    @Autowired
-    public AppConfigSecurity(AppUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    @Bean
+    public AuthenticationManager authenticationManager(AppUserDetailsService userDetailsService,
+            PasswordEncoder passwordEncoder) {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return new ProviderManager(authProvider);
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsService).passwordEncoder(AppUserDetailsService.PASSWORD_ENCODER);
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         //@formatter:off
         http
-                .authorizeRequests()
-                    .antMatchers("/css/*", "/images/*", "/js/*").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
-                .logout()
-                    .permitAll()
-                    .deleteCookies("JSESSIONID")
-                    .and()
-                .rememberMe()
-                    .key("TheNorthRemembers");
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/css/*", "/images/*", "/js/*")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll())
+                .logout(logout -> logout
+                        .permitAll()
+                        .deleteCookies("JSESSIONID"))
+                .rememberMe(rememberMe -> rememberMe
+                        .key("TheNorthRemembers"));
         //@formatter:on
+
+        return http.build();
     }
 }

@@ -6,9 +6,9 @@ import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tictactoe.game.entity.Game;
@@ -21,15 +21,11 @@ import tictactoe.user.entity.AppUser;
 @ExtendWith(MockitoExtension.class)
 class GameServiceTest {
 
+    @InjectMocks
     private GameService service;
 
     @Mock
     private GameRepository mockRepository;
-
-    @BeforeEach
-    public void setUp() {
-        service = new GameService(mockRepository);
-    }
 
     @Test
     void create_PlayerGoFirst_Player1TypeHuman() {
