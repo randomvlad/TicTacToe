@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import org.jspecify.annotations.Nullable;
 
 class BoardUtil {
 
@@ -25,6 +26,11 @@ class BoardUtil {
         return rows;
     }
 
+    /**
+     * @return tile string ID in format "{rowId}-{columnId}". Example: "0-1" (row 0, column 1).
+     * Indices are 0-based. {@code null} if all tiles are taken.
+     */
+    @Nullable
     public static String getRandomAvailableTile(List<List<String>> rows) {
         List<String> available = new ArrayList<>();
 
