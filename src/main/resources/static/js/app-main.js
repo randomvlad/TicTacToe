@@ -1,19 +1,37 @@
-$(document).ready(function () {
+function ready(callFunctionOnReady) {
+  if (document.readyState !== 'loading') {
+    callFunctionOnReady();
+  } else {
+    document.addEventListener('DOMContentLoaded', callFunctionOnReady);
+  }
+}
 
-  if ($("#is_game_over").val() !== "true") {
-    $(".board-row-tile.available").click(function (event) {
-      $("#tile_id").val(event.target.id);
-      $("#form_mark_tile").submit();
+function addClickEvent(elementId, clickFunction) {
+  const element = document.getElementById(elementId);
+  element.addEventListener("click", clickFunction);
+}
+
+ready(() => {
+
+  const gameOverState = document.getElementById("is-game-over").value;
+
+  if (gameOverState !== "true") {
+    const availableTiles = document.querySelectorAll(".board-row-tile.available");
+
+    availableTiles.forEach(tile => {
+      tile.addEventListener("click", (event) => {
+        document.getElementById("tile-id").value = event.target.id;
+        document.getElementById("form-mark-tile").submit();
+      });
     });
   }
 
-  $("#btn-new-game").click(function (event) {
-    $("#new_game").val("yes");
-    $("#form_mark_tile").submit();
+  addClickEvent("btn-new-game", () => {
+    document.getElementById("new-game").value = "yes";
+    document.getElementById("form-mark-tile").submit();
   });
 
-  $("#link-user-logout").click(function (event) {
-    $("#form-logout").submit();
+  addClickEvent("link-user-logout", () => {
+    document.getElementById("form-logout").submit();
   });
-
 });

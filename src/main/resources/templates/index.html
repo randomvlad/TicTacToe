@@ -45,18 +45,18 @@
       </tr>
     </table>
 
-    <form id="form_mark_tile" th:action="@{/}" method="POST" class="form-inline">
+    <form id="form-mark-tile" th:action="@{/}" method="POST" class="form-inline">
       <div class="checkbox">
-        <label><input name="player_go_first" type="checkbox" th:checked="${playerGoFirst}"/> Play First</label>
+        <label><input name="player-go-first" type="checkbox" th:checked="${playerGoFirst}"/> Play First</label>
       </div>
 
       <div class="btn-new-game-wrap">
         <button id="btn-new-game" class="btn btn-success btn-lg" role="button">New Game</button>
       </div>
 
-      <input id="is_game_over" type="hidden" th:value="${playStatus != 'IN_PROGRESS'}"/>
-      <input id="tile_id" name="tile_id" type="hidden" value=""/>
-      <input id="new_game" name="new_game" type="hidden" value=""/>
+      <input id="is-game-over" type="hidden" th:value="${playStatus != 'IN_PROGRESS'}"/>
+      <input id="tile-id" name="tile-id" type="hidden" value=""/>
+      <input id="new-game" name="new-game" type="hidden" value=""/>
     </form>
   </div>
 </div>

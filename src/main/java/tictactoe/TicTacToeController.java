@@ -50,9 +50,9 @@ public class TicTacToeController {
     public String takeTurns(
             Model model,
             Principal principal,
-            @RequestParam("tile_id") String tileId,
-            @RequestParam(value = "new_game", required = false, defaultValue = "false") boolean newGame,
-            @RequestParam(value = "player_go_first", required = false, defaultValue = "false") boolean playerGoFirst
+            @RequestParam("tile-id") String tileId,
+            @RequestParam(value = "new-game", required = false, defaultValue = "false") boolean newGame,
+            @RequestParam(value = "player-go-first", required = false, defaultValue = "false") boolean playerGoFirst
     ) {
         AppUser appUser = getAppUser(principal);
 
@@ -78,22 +78,12 @@ public class TicTacToeController {
     private void setModelGameAttributes(Model model, Game game) {
         boolean playerGoFirst = game.getPlayer1Type() == PlayerType.HUMAN;
 
-        String playerStatus;
-        switch (game.getState()) {
-            case PLAYER_1_WIN:
-                playerStatus = playerGoFirst ? "WON" : "LOST";
-                break;
-            case PLAYER_2_WIN:
-                playerStatus = playerGoFirst ? "LOST" : "WON";
-                break;
-            case DRAW:
-                playerStatus = "DRAW";
-                break;
-            case IN_PROGRESS:
-            default:
-                playerStatus = "IN_PROGRESS";
-                break;
-        }
+        String playerStatus = switch (game.getState()) {
+            case PLAYER_1_WIN -> playerGoFirst ? "WON" : "LOST";
+            case PLAYER_2_WIN -> playerGoFirst ? "LOST" : "WON";
+            case DRAW -> "DRAW";
+            default -> "IN_PROGRESS";
+        };
 
         model.addAttribute("playerGoFirst", playerGoFirst);
         model.addAttribute("playStatus", playerStatus);
