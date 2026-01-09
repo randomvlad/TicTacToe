@@ -8,14 +8,16 @@ function ready(callFunctionOnReady) {
 
 function addClickEvent(elementId, clickFunction) {
   const element = document.getElementById(elementId);
-  element.addEventListener("click", clickFunction);
+  if (element) {
+    element.addEventListener("click", clickFunction);
+  }
 }
 
 ready(() => {
 
-  const gameOverState = document.getElementById("is-game-over").value;
+  const gameOverState = document.getElementById("is-game-over");
 
-  if (gameOverState !== "true") {
+  if (gameOverState && gameOverState.value !== "true") {
     const availableTiles = document.querySelectorAll(".board-row-tile.available");
 
     availableTiles.forEach(tile => {

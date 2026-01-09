@@ -7,7 +7,7 @@ A secured web app to play Tic-tac-toe against a dummy computer opponent.
 * Computer opponent's AI chooses random squares, except when going first in which case the center tile is always picked.
 * User game data is persisted to an in-memory database. As long as the server is not restarted, a player can leave and return to finish an in-progress game.  
 * App is secured with a username & password login. Database is seeded with two usernames `rick` and `morty`. Both have the same password `pickle`.
-* UI renders each time through a full page refresh in the name of simplicity.
+* UI renders server-side in the name of simplicity. Each game move results in a full page refresh.
 * For more info about the project and lessons learned, see: [Little Code Gems](docs/code-gems.md).
 * Unit tests: [src/test/java/tictactoe/*](src/test/java/tictactoe)
 

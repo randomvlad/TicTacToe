@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="~{fragments/base :: baseHead(~{::title}, ~{::script}, ~{::link})}">
+  <title>Tic-tac-toe</title>
+
+  <script src="js/app-main.js"></script>
+
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+
+<body>
+
+<div th:insert="~{fragments/header :: header}"></div>
+
+<div class="card m-3">
+  <div class="row g-0 flex-row-reverse bg-light border border-danger rounded-lg">
+    <div class="col-md-2">
+      <img class="position-absolute bottom-0 end-0" src="images/crying-bear-dark2.png" style="width: 150px; height: auto;" alt="Bear is upset at the encountered error" />
+    </div>
+    <div class="col-md-10 p-2">
+      <h1 class="display-6 fw-bold text-danger">Oops! Something went wrong.</h1>
+      <p class="fs-5">
+        Status: <span th:text="${status}"></span><br />
+        Error: <span th:text="${error}"></span><br />
+        Message: <span th:text="${message}"></span><br />
+        Timestamp: <span th:text="${timestamp}"></span><br />
+      </p>
+      <form th:action="@{/}" class="form-inline">
+        <button class="btn btn-outline-secondary btn-sm" type="submit" role="button">Go to Home Page</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
