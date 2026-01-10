@@ -1,19 +1,17 @@
 package tictactoe.game.model;
 
+import lombok.Getter;
+
+@Getter
 public enum BoardTile {
 
     EMPTY(""),
     X("x"),
     O("o");
 
-    private final String text;
+    private final String value;
 
-    BoardTile(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public String toString() {
-        return text;
+    BoardTile(String value) {
+        this.value = value;
     }
 }

@@ -32,10 +32,6 @@ In a small project, the warning and its implications can likely be ignored (also
 
 For a proper and in-depth explanation, see: [The Open Session In View Anti-Pattern](https://vladmihalcea.com/the-open-session-in-view-anti-pattern/). If you are feeling brave, check out the spirited discussion in [Spring Boot Issue #7107](https://github.com/spring-projects/spring-boot/issues/7107).  
 
-### How to disable Hypersistence banner in logs from hibernate-types dependency?
-
-The hibernate-types library is very useful, but logs a large banner at startup. It can be disabled with `hibernate.types.print.banner=false` property in [hibernate-types.properties](/src/main/resources/hibernate-types.properties) file.
-
 More Info: [SO - Disable the Hypersistence banner in Spring Boot](https://stackoverflow.com/questions/61118423/how-to-disable-the-hypersistence-banner-when-using-hibernate-types-52-in-spring)
 
 ### Why use AssertJ library in unit tests?
@@ -48,7 +44,7 @@ Examples:
 String veryLongMessage = "many words but only one potato ...";
 assertThat(veryLongMessage).containsOnlyOnce("potato");
 
-List<String> list = Arrays.asList("b", "c", "a");
+List<String> list = List.of("b", "c", "a");
 assertThat(list).hasSize(3).containsExactlyInAnyOrder("a", "b", "c");
 
 Map<String, String> map = Map.of("potato", "tasty");

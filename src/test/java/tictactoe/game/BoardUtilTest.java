@@ -2,7 +2,6 @@ package tictactoe.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +18,10 @@ class BoardUtilTest {
 
     @Test
     void getRandomAvailableTile_OnlyCenterTileAvailable_PickCenterTile() {
-        List<List<String>> rows = Arrays.asList(//@formatter:off
-                Arrays.asList("x", "o", "x"),
-                Arrays.asList("o", "", "o"),
-                Arrays.asList("x", "o", "x")
+        List<List<String>> rows = List.of(//@formatter:off
+                List.of("x", "o", "x"),
+                List.of("o", "", "o"),
+                List.of("x", "o", "x")
         );//@formatter:on
 
         String tileId = BoardUtil.getRandomAvailableTile(rows);
@@ -31,10 +30,10 @@ class BoardUtilTest {
 
     @Test
     void getRandomAvailableTile_AllTilesTaken_ReturnNull() {
-        List<List<String>> rows = Arrays.asList(//@formatter:off
-                Arrays.asList("x", "o", "x"),
-                Arrays.asList("o", "x", "o"),
-                Arrays.asList("x", "o", "x")
+        List<List<String>> rows = List.of(//@formatter:off
+                List.of("x", "o", "x"),
+                List.of("o", "x", "o"),
+                List.of("x", "o", "x")
         );//@formatter:on
 
         String tileId = BoardUtil.getRandomAvailableTile(rows);
@@ -43,10 +42,10 @@ class BoardUtilTest {
 
     @Test
     void getAllLines_Call_ExpectedEightLines() {
-        List<List<String>> rows = Arrays.asList(//@formatter:off
-                Arrays.asList("1", "2", "3"),
-                Arrays.asList("4", "5", "6"),
-                Arrays.asList("7", "8", "9")
+        List<List<String>> rows = List.of(//@formatter:off
+                List.of("1", "2", "3"),
+                List.of("4", "5", "6"),
+                List.of("7", "8", "9")
         );//@formatter:on
 
         List<List<String>> lines = BoardUtil.getAllLines(rows);

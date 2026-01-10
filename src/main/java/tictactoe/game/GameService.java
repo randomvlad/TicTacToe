@@ -2,14 +2,13 @@ package tictactoe.game;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tictactoe.game.dao.GameRepository;
 import tictactoe.game.dao.model.Game;
 import tictactoe.game.dao.model.Game.GameState;
 import tictactoe.game.dao.model.Game.PlayerNumber;
 import tictactoe.game.dao.model.Game.PlayerType;
-import tictactoe.game.dao.GameRepository;
 import tictactoe.game.model.BoardTile;
 import tictactoe.user.dao.model.AppUser;
 
@@ -76,7 +75,7 @@ public class GameService {
 
         int rowIndex = Integer.parseInt(indices[0]);
         int columnIndex = Integer.parseInt(indices[1]);
-        game.getRows().get(rowIndex).set(columnIndex, tile.toString());
+        game.getRows().get(rowIndex).set(columnIndex, tile.getValue());
 
         GameState state = evaluateGameState(game.getRows());
         game.setState(state);
@@ -95,7 +94,7 @@ public class GameService {
             }
 
             if (line.stream().allMatch(tile -> tile.equals(firstTile))) {
-                return firstTile.equals(BoardTile.X.toString()) ? GameState.PLAYER_1_WIN : GameState.PLAYER_2_WIN;
+                return firstTile.equals(BoardTile.X.getValue()) ? GameState.PLAYER_1_WIN : GameState.PLAYER_2_WIN;
             }
         }
 

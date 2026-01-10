@@ -100,7 +100,7 @@ class GameServiceTest {
     @Test
     void takeTurn_Player1Wins_GameOverPlayer1Win() {
         Game game = service.create(new AppUser(), true);
-        game.getRows().set(0, Arrays.asList("x", "x", ""));
+        game.getRows().set(0, List.of("x", "x", ""));
 
         service.takeTurn(game, "0-2");
 
@@ -117,9 +117,9 @@ class GameServiceTest {
     @Test
     void takeTurn_Player2Wins_GameOverPlayer2Win() {
         Game game = service.create(new AppUser(), true);
-        game.getRows().set(0, Arrays.asList("x", "x", "o"));
-        game.getRows().set(1, Arrays.asList("", "o", ""));
-        game.getRows().set(2, Arrays.asList("", "", ""));
+        game.getRows().set(0, List.of("x", "x", "o"));
+        game.getRows().set(1, List.of("", "o", ""));
+        game.getRows().set(2, List.of("", "", ""));
 
         service.takeTurn(game, "1-0"); // player 1 marks X
         service.takeTurn(game, "2-0"); // player 2 marks O and wins
@@ -131,9 +131,9 @@ class GameServiceTest {
     @Test
     void takeTurn_NoWinners_GameOverDraw() {
         Game game = service.create(new AppUser(), true);
-        game.getRows().set(0, Arrays.asList("o", "x", "x"));
-        game.getRows().set(1, Arrays.asList("x", "o", "o"));
-        game.getRows().set(2, Arrays.asList("o", "", "x"));
+        game.getRows().set(0, List.of("o", "x", "x"));
+        game.getRows().set(1, List.of("x", "o", "o"));
+        game.getRows().set(2, List.of("o", "", "x"));
 
         service.takeTurn(game, "2-1");
 

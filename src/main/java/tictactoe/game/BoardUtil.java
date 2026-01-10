@@ -1,7 +1,6 @@
 package tictactoe.game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import org.jspecify.annotations.Nullable;
@@ -18,7 +17,7 @@ class BoardUtil {
         for (int rowIndex = 0; rowIndex < NUMBER_ROWS; rowIndex++) {
             List<String> row = new ArrayList<>();
             for (int columnIndex = 0; columnIndex < NUMBER_COLUMNS; columnIndex++) {
-                row.add(BoardTile.EMPTY.toString());
+                row.add(BoardTile.EMPTY.getValue());
 
             }
             rows.add(row);
@@ -70,10 +69,10 @@ class BoardUtil {
             lines.add(columnLine);
         }
 
-        List<String> diagonal1 = Arrays.asList(rows.get(0).get(0), rows.get(1).get(1), rows.get(2).get(2));
+        List<String> diagonal1 = List.of(rows.get(0).get(0), rows.get(1).get(1), rows.get(2).get(2));
         lines.add(diagonal1);
 
-        List<String> diagonal2 = Arrays.asList(rows.get(0).get(2), rows.get(1).get(1), rows.get(2).get(0));
+        List<String> diagonal2 = List.of(rows.get(0).get(2), rows.get(1).get(1), rows.get(2).get(0));
         lines.add(diagonal2);
 
         return lines;

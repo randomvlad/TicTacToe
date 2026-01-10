@@ -1,8 +1,8 @@
 package tictactoe.user;
 
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -10,18 +10,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import tictactoe.user.dao.model.AppUser;
 import tictactoe.user.dao.AppUserRepository;
+import tictactoe.user.dao.model.AppUser;
 
 @Component
+@RequiredArgsConstructor
 public class AppUserDetailsService implements UserDetailsService {
 
     private final AppUserRepository repository;
-
-    @Autowired
-    public AppUserDetailsService(AppUserRepository repository) {
-        this.repository = repository;
-    }
 
     /**
      * @throws UsernameNotFoundException if {@code username} is not found
