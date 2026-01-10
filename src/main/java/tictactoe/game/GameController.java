@@ -1,36 +1,25 @@
-package tictactoe;
+package tictactoe.game;
 
 import java.security.Principal;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import tictactoe.user.entity.AppUser;
-import tictactoe.user.entity.AppUserRepository;
-import tictactoe.game.entity.Game;
-import tictactoe.game.entity.Game.PlayerType;
-import tictactoe.game.GameService;
+import tictactoe.game.dao.model.Game;
+import tictactoe.game.dao.model.Game.PlayerType;
+import tictactoe.user.dao.model.AppUser;
+import tictactoe.user.dao.AppUserRepository;
 
 @Controller
-public class TicTacToeController {
+@RequiredArgsConstructor
+public class GameController {
 
     private final GameService gameService;
 
     private final AppUserRepository appUserRepository;
-
-    @Autowired
-    public TicTacToeController(GameService gameService, AppUserRepository appUserRepository) {
-        this.gameService = gameService;
-        this.appUserRepository = appUserRepository;
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
-    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Principal principal, Model model) {

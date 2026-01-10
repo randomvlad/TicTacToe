@@ -68,7 +68,7 @@ More Info: [SO - Unit Test Naming Best Practices](https://stackoverflow.com/ques
 ### How to compare enum values in Thymeleaf templates?
 
 In short, it's somewhat clumsy and painful. A couple approaches:
-1. Use `T()` operator. Example: `th:if="${state == T(tictactoe.game.entity.Game.GameState).IN_PROGRESS}"`. Rather ugly and verbose due to needing the package path. May cause problems during refactoring.
+1. Use `T()` operator. Example: `th:if="${state == T(tictactoe.game.dao.model.Game.GameState).IN_PROGRESS}"`. Rather ugly and verbose due to needing the package path. May cause problems during refactoring.
 2. Convert to string `state.name()` before each comparison, but that mostly negates making the enum available to Thymeleaf in the first place. Complicates refactoring as well.
 3. Add extra methods to enum itself. Example: `state.isInProgress()`. May not be practical if there are a lot enum values and introduces extra code strictly for sake of Thymeleaf. 
 

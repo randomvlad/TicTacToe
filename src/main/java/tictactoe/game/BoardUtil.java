@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import org.jspecify.annotations.Nullable;
+import tictactoe.game.model.BoardTile;
 
 class BoardUtil {
 

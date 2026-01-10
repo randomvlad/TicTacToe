@@ -14,8 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import tictactoe.user.entity.AppUser;
-import tictactoe.user.entity.AppUserRepository;
+import tictactoe.user.dao.model.AppUser;
+import tictactoe.user.dao.AppUserRepository;
 
 @ExtendWith(MockitoExtension.class)
 class AppUserDetailsServiceTest {

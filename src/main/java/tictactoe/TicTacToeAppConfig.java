@@ -1,4 +1,4 @@
-package tictactoe.config;
+package tictactoe;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import tictactoe.user.AppUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-public class AppConfigSecurity {
+public class TicTacToeAppConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(AppUserDetailsService userDetailsService,

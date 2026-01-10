@@ -11,12 +11,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import tictactoe.game.entity.Game;
-import tictactoe.game.entity.Game.GameState;
-import tictactoe.game.entity.Game.PlayerNumber;
-import tictactoe.game.entity.Game.PlayerType;
-import tictactoe.game.entity.GameRepository;
-import tictactoe.user.entity.AppUser;
+import tictactoe.game.dao.model.Game;
+import tictactoe.game.dao.model.Game.GameState;
+import tictactoe.game.dao.model.Game.PlayerNumber;
+import tictactoe.game.dao.model.Game.PlayerType;
+import tictactoe.game.dao.GameRepository;
+import tictactoe.user.dao.model.AppUser;
 
 @ExtendWith(MockitoExtension.class)
 class GameServiceTest {

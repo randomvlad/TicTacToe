@@ -1,25 +1,23 @@
 package tictactoe.game;
 
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tictactoe.game.entity.Game;
-import tictactoe.game.entity.Game.GameState;
-import tictactoe.game.entity.Game.PlayerNumber;
-import tictactoe.game.entity.Game.PlayerType;
-import tictactoe.game.entity.GameRepository;
-import tictactoe.user.entity.AppUser;
+import tictactoe.game.dao.model.Game;
+import tictactoe.game.dao.model.Game.GameState;
+import tictactoe.game.dao.model.Game.PlayerNumber;
+import tictactoe.game.dao.model.Game.PlayerType;
+import tictactoe.game.dao.GameRepository;
+import tictactoe.game.model.BoardTile;
+import tictactoe.user.dao.model.AppUser;
 
 @Service
+@RequiredArgsConstructor
 public class GameService {
 
     private final GameRepository gameRepository;
-
-    @Autowired
-    public GameService(GameRepository gameRepository) {
-        this.gameRepository = gameRepository;
-    }
 
     @Transactional
     public Game create(AppUser appUser, boolean playerGoFirst) {
