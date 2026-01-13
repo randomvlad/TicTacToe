@@ -14,7 +14,7 @@ A secured web app to play Tic-tac-toe against a dummy computer opponent.
 ## Tech Stack
 | | Technology |
 |---|---|
-| __Language__ | Java 17 |
+| __Language__ | Java 25 |
 | __Framework__ | Spring Boot v4.0 |
 | __Data Layer__ | H2 Database, JPA & Hibernate v7.2 | 
 | __UI Layer__ | HTML, CSS, Javascript, [Bootstrap](https://getbootstrap.com/) v5, [Thymeleaf](http://www.thymeleaf.org/) v3.1 |
@@ -22,8 +22,8 @@ A secured web app to play Tic-tac-toe against a dummy computer opponent.
 | __Build Tool__ | Gradle v9.2 |
 
 ## Install & Run
-* Install Java 17.
-  * Recommend: use [SDKMAN](https://sdkman.io/install/) to effortlessly install and switch between different Java versions and distros.
+* Install Java 25.
+  * Tip: use [SDKMAN!](https://sdkman.io/install/) to effortlessly install and switch between Java versions and distros.
 * Clone repo: `git clone https://github.com/randomvlad/TicTacToe.git`
 * Navigate `cd TicTacToe` and run applicable [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper) command:
   * macOS/Unix: `./gradlew bootRun`
