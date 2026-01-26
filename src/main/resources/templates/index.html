@@ -21,10 +21,10 @@
           Your turn. Click a square to place an <span th:text="${playerGoFirst ?  'X' : 'O'}"></span>.
         </div>
         <div th:case="'WON'" class="alert alert-success" role="alert">
-          You've won! A sound victory. 🎉
+          You've won! A sound victory. 🏆
         </div>
         <div th:case="'LOST'" class="alert alert-danger" role="alert">
-          You've lost. Better luck next time!
+          You've lost. Better luck next time! 🥈
         </div>
         <div th:case="'DRAW'" class="alert alert-primary" role="alert">
           Mheh! A smelly draw. 💩
