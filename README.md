@@ -1,8 +1,12 @@
-# Tic-tac-toe App
+<h1 style="text-align: center">
+    <img alt="Tic-tac-toe App Logo" src="/src/main/resources/static/images/tic-tac-toe.png"><br>Tic-tac-toe App
+</h1>
+
+![Java CI with Gradle](https://github.com/randomvlad/TicTacToe/actions/workflows/gradle.yml/badge.svg) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/randomvlad/TicTacToe/blob/master/LICENSE.txt)
 
 A secured web app to play Tic-tac-toe against a dummy computer opponent.
 
-## Features & Notes
+## Overview
 * Play a game on a 3x3 board with an option to go first or after the computer opponent.
 * Computer opponent's AI chooses random squares, except when going first in which case the center tile is always picked.
 * User game data is persisted to an in-memory database. As long as the server is not restarted, a player can leave and return to finish an in-progress game.  
