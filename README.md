@@ -1,4 +1,4 @@
-<h1 style="text-align: center">
+<h1 align="center">
     <img alt="Tic-tac-toe App Logo" src="/src/main/resources/static/images/tic-tac-toe.png"><br>Tic-tac-toe App
 </h1>
 
