@@ -2,7 +2,8 @@
     <img alt="Tic-tac-toe App Logo" src="/src/main/resources/static/images/tic-tac-toe.png"><br>Tic-tac-toe App
 </h1>
 
-[![CI Build](https://github.com/randomvlad/TicTacToe/actions/workflows/gradle.yml/badge.svg)](https://github.com/randomvlad/TicTacToe/actions/workflows/gradle.yml) [![CodeQL](https://github.com/randomvlad/TicTacToe/actions/workflows/codeql.yml/badge.svg)](https://github.com/randomvlad/TicTacToe/actions/workflows/codeql.yml) [![codecov](https://codecov.io/github/randomvlad/tictactoe/graph/badge.svg?token=3IASBGMWTF)](https://codecov.io/github/randomvlad/tictactoe) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/randomvlad/TicTacToe/blob/master/LICENSE.txt)
+[![CI Build](https://github.com/randomvlad/TicTacToe/actions/workflows/gradle.yml/badge.svg)](https://github.com/randomvlad/TicTacToe/actions/workflows/gradle.yml) [![CodeQL](https://github.com/randomvlad/TicTacToe/actions/workflows/codeql.yml/badge.svg)](https://github.com/randomvlad/TicTacToe/actions/workflows/codeql.yml) [![codecov](https://codecov.io/github/randomvlad/tictactoe/graph/badge.svg?token=3IASBGMWTF)](https://codecov.io/github/randomvlad/tictactoe) [![Snyk Security Monitoring](https://snyk.io/test/github/randomvlad/TicTacToe/badge.svg)](https://snyk.io/test/github/randomvlad/TicTacToe) [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/randomvlad/TicTacToe/badge)](https://scorecard.dev/viewer/?uri=github.com/arndomvlad/TicTacToe)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/randomvlad/TicTacToe/blob/master/LICENSE.txt)
 
 A secured web app to play Tic-tac-toe against a dummy computer opponent.
 
