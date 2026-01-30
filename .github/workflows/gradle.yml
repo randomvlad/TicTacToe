@@ -38,13 +38,13 @@ jobs:
 
     # See: https://github.com/codecov/example-java-gradle/blob/main/.github/workflows/ci.yml
     - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
     # See: https://github.com/marketplace/actions/codacy-coverage-reporter
     - name: Codacy Coverage Reporter
-      uses: codacy/codacy-coverage-reporter-action@v1.3.0
+      uses: codacy/codacy-coverage-reporter-action@89d6c85cfafaec52c72b6c5e8b2878d33104c699 # v1.3.0
       with:
         project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
