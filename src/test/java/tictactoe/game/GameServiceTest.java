@@ -4,12 +4,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tictactoe.game.dao.GameRepository;
 import tictactoe.game.dao.model.Game;
@@ -191,6 +194,34 @@ class GameServiceTest {
         // then
         assertThat(game.getNextMove()).isNull();
         assertThat(game.getState()).isEqualTo(GameState.DRAW);
+    }
+
+    @Test
+    void takeTurn_GameAlreadyOver_AbortNoTurnTaken() {
+        // given
+        Game mockGame = Mockito.mock(Game.class);
+        when(mockGame.getState()).thenReturn(GameState.DRAW);
+
+        // when
+        service.takeTurn(mockGame, "1-1");
+
+        // then
+        verify(mockGame, only()).getState();
+        verifyNoInteractions(mockRepository);
+    }
+
+    @Test
+    void takeTurn_InvalidTileIdFormat_AbortNoTurnTaken() {
+        // given
+        Game mockGame = Mockito.mock(Game.class);
+        when(mockGame.getState()).thenReturn(GameState.IN_PROGRESS);
+
+        // when
+        service.takeTurn(mockGame, "1"); // expected format: "{d}-{d}"
+
+        // then
+        verify(mockGame, only()).getState();
+        verifyNoInteractions(mockRepository);
     }
 
     /**
