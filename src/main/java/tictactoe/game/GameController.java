@@ -5,13 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tictactoe.game.dao.model.Game;
 import tictactoe.game.dao.model.Game.PlayerType;
-import tictactoe.user.dao.model.AppUser;
 import tictactoe.user.dao.AppUserRepository;
+import tictactoe.user.dao.model.AppUser;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,7 +21,7 @@ public class GameController {
 
     private final AppUserRepository appUserRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
     public String index(Principal principal, Model model) {
         AppUser appUser = getAppUser(principal);
 
@@ -35,7 +35,7 @@ public class GameController {
         return "index";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @PostMapping("/")
     public String takeTurns(
             Model model,
             Principal principal,
