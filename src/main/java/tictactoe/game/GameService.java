@@ -88,7 +88,7 @@ public class GameService {
 
     private GameState evaluateGameState(List<List<String>> rows) {
         for (List<String> line : BoardUtil.getAllLines(rows)) {
-            String firstTile = line.get(0);
+            String firstTile = line.getFirst();
             if (firstTile.isEmpty()) {
                 continue;
             }

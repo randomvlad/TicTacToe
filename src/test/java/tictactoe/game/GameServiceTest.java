@@ -16,6 +16,7 @@ import tictactoe.game.dao.model.Game;
 import tictactoe.game.dao.model.Game.GameState;
 import tictactoe.game.dao.model.Game.PlayerNumber;
 import tictactoe.game.dao.model.Game.PlayerType;
+import tictactoe.game.model.BoardTile;
 import tictactoe.user.dao.model.AppUser;
 
 @ExtendWith(MockitoExtension.class)
@@ -80,6 +81,31 @@ class GameServiceTest {
 
         // then
         verify(mockRepository, only()).findFirstByAppUserOrderByIdDesc(appUser);
+    }
+
+    @Test
+    void takeTurnRandom_NewGameAllTilesEmpty_OneTileMarked() {
+        // given
+        Game game = service.create(new AppUser(), true);
+
+        // when
+        service.takeTurnRandom(game);
+
+        // then
+        int countEmpty = 0;
+        int countX = 0;
+        for (List<String> row : game.getRows()) {
+            for (String tile : row) {
+                if (tile.equals(BoardTile.X.getValue())) {
+                    countX++;
+                } else {
+                    countEmpty++;
+                }
+            }
+        }
+
+        assertThat(countEmpty).isEqualTo(8);
+        assertThat(countX).isEqualTo(1);
     }
 
     @Test
