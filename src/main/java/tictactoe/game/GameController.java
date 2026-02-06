@@ -64,7 +64,7 @@ public class GameController {
         return "index";
     }
 
-    private void setModelGameAttributes(Model model, Game game) {
+    static void setModelGameAttributes(Model model, Game game) {
         boolean playerGoFirst = game.getPlayer1Type() == PlayerType.HUMAN;
 
         String playerStatus = switch (game.getState()) {

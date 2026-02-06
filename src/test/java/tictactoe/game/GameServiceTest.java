@@ -40,7 +40,6 @@ class GameServiceTest {
         // when
         Game game = service.create(appUser, playerGoFirst);
 
-
         // then
         assertThat(game.getAppUser()).isSameAs(appUser);
         assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);

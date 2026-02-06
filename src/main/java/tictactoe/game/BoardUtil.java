@@ -3,9 +3,11 @@ package tictactoe.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import lombok.experimental.UtilityClass;
 import org.jspecify.annotations.Nullable;
 import tictactoe.game.model.BoardTile;
 
+@UtilityClass
 class BoardUtil {
 
     private static final int NUMBER_ROWS = 3;

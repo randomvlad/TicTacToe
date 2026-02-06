@@ -18,28 +18,15 @@ public class GameService {
 
     private final GameRepository gameRepository;
 
+    /**
+     * Create and persist a new game for {@code appUser}. Previous
+     * game for the user is deleted.
+     */
     @Transactional
     public Game create(AppUser appUser, boolean playerGoFirst) {
-
         gameRepository.deleteUserGames(appUser);
-
-        Game game = new Game();
-        game.setAppUser(appUser);
-        game.setState(GameState.IN_PROGRESS);
-        game.setNextMove(PlayerNumber.PLAYER_1);
-
-        if (playerGoFirst) {
-            game.setPlayer1Type(PlayerType.HUMAN);
-            game.setPlayer2Type(PlayerType.COMPUTER);
-        } else {
-            game.setPlayer1Type(PlayerType.COMPUTER);
-            game.setPlayer2Type(PlayerType.HUMAN);
-        }
-
-        game.setRows(BoardUtil.createEmpty());
-
+        Game game = newGameInstance(appUser, playerGoFirst);
         gameRepository.save(game);
-
         return game;
     }
 
@@ -47,6 +34,9 @@ public class GameService {
         return gameRepository.findFirstByAppUserOrderByIdDesc(appUser);
     }
 
+    /**
+     * Mark a random available tile on the game board. No operation, if board has no available tiles or game is over.
+     */
     public void takeTurnRandom(Game game) {
         String tileId = BoardUtil.getRandomAvailableTile(game.getRows());
         if (tileId != null) {
@@ -84,6 +74,25 @@ public class GameService {
         }
 
         gameRepository.save(game);
+    }
+
+    public static Game newGameInstance(AppUser appUser, boolean playerGoFirst) {
+        Game game = new Game();
+        game.setAppUser(appUser);
+        game.setState(GameState.IN_PROGRESS);
+        game.setNextMove(PlayerNumber.PLAYER_1);
+
+        if (playerGoFirst) {
+            game.setPlayer1Type(PlayerType.HUMAN);
+            game.setPlayer2Type(PlayerType.COMPUTER);
+        } else {
+            game.setPlayer1Type(PlayerType.COMPUTER);
+            game.setPlayer2Type(PlayerType.HUMAN);
+        }
+
+        game.setRows(BoardUtil.createEmpty());
+
+        return game;
     }
 
     private GameState evaluateGameState(List<List<String>> rows) {
