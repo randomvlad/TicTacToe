@@ -1,6 +1,6 @@
 # Little Code Gems
 
-Most software projects require countless inquiries, considerations and ultimately decisions. Seemingly simple questions can often turn into surprisingly elaborate and deep rabbit holes. These "side quests" may appear insignificant, but overtime add up to a considerable amount of knowledge, expertise and intuition. The lessons learned can become little gems that stay with you long after a particular project. 
+Most software projects require countless inquiries, considerations and ultimately decisions. Seemingly simple questions can often turn into surprisingly elaborate and deep rabbit holes. These "side quests" may appear insignificant, but overtime add up to a considerable amount of knowledge, expertise and intuition. The lessons learned can become little gems that stay with you long after the project ships. 
 
 ## Questions & Answers
 
@@ -71,3 +71,9 @@ In short, it's somewhat clumsy and painful. A couple approaches:
 These lackluster options may prompt some to avoid passing enums to the view layer at all if template logic has a lot of comparisons. Rather convert enums to a string in a single place before passing it to the view layer. Hopefully one day Thymeleaf will have a more developer friendly solution.   
 
 More Info: [SO - Comparing Enum Constants in Thymeleaf](https://stackoverflow.com/questions/24937441/comparing-the-enum-constants-in-thymeleaf)
+
+### What screenshot tool was used to capture screenshots shown on the README page?
+
+Shottr app for macOS → https://shottr.cc/ 
+
+Author's note: I've goldilock-ed my way through a handful of screenshot apps over the years and Shottr has emerged as "just right" in terms of features, productivity and intuitive use. Well worth the reasonable and single time purchase cost.
