@@ -37,9 +37,18 @@ A secured web app to play Tic-tac-toe against a dummy computer opponent.
 * Log in with username `rick` or `morty` and password `pickle` to play a game.
 * To end app, kill process in terminal with `CTRL + C`. 
 
-## Game Screenshots
-<img src="docs/images/tictactoe_screenshot_login.png" style="width: 800px; height: 700px;" alt="Tic-tac-toe app login screenshot" />
-<br />
-<img src="docs/images/tictactoe_screenshot_win.png" style="width: 800px; height: 700px;" alt="Tic-tac-toe app won game screenshot" />
-<br />
-<img src="docs/images/tictactoe_screenshot_loss.png" style="width: 800px; height: 700px;" alt="Tic-tac-toe app lost game screenshot" />
+## Screenshots
+### Login Page
+<img src="docs/images/tictactoe-screenshot-login.png" style="height: 600px" alt="Tic-tac-toe app login screenshot" />
+
+### Game Won
+<img src="docs/images/tictactoe-screenshot-win.png" style="height: 600px;" alt="Tic-tac-toe app won game screenshot" />
+
+### Game Lost
+<img src="docs/images/tictactoe-screenshot-loss.png" style="height: 600px;" alt="Tic-tac-toe app lost game screenshot" />
+
+### Game Draw
+<img src="docs/images/tictactoe-screenshot-draw.png" style="height: 600px;" alt="Tic-tac-toe app draw game screenshot" />
+
+### Custom Error Page 
+<img src="docs/images/tictactoe-screenshot-error-page.png" style="height: 600px;" alt="Tic-tac-toe app error page screenshot" />
