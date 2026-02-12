@@ -41,11 +41,11 @@ public class GameController {
      *     <li>Start a new game. If computer goes first, then immediately select center tile for it.</li>
      *     <li>Take turns in an existing game for the player and then the computer.</li>
      * </ol>
-     * Implementation note: Letting the method have two responsibilities is a deliberate choice in the name
-     * of simplicity. UI state changes are initiated through an HTML form which can only support GET and POST requests.
-     * One natural evolution (path not taken to keep things simple) is to introduce a RESTful API with separate
-     * endpoints to start a new game and take turns. In turn, frontend paradigm would need to change from server-side
-     * rendering (SSR) to client-side rendering (CSR).
+     * Implementation note: Letting the method have two responsibilities is a deliberate choice in the name of
+     * simplicity. UI state changes go through an HTML form POST submission. Hence, different operations (i.e. new game
+     * vs take turns) submit to the same endpoint. One natural evolution (path not taken to keep things simple) is to
+     * introduce a RESTful API with separate endpoints. Consequently, the frontend paradigm would need to change from
+     * server-side rendering (SSR) to client-side rendering (CSR).
      */
     @PostMapping("/")
     public String takeTurns(
