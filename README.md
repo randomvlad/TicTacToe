@@ -37,7 +37,49 @@ A secured web app to play Tic-tac-toe against a dummy computer opponent.
 * Log in with username `rick` or `morty` and password `pickle` to play a game.
 * To end app, kill process in terminal with `CTRL + C`. 
 
+## Data Schema
+
+App data is persisted and read from two relational tables `APP_USER` and `GAME`.
+
+<img src="docs/images/tictactoe-db-schema-diagram.png" style="height: 250px" alt="Tic-tac-toe DB Schema Diagram" />
+
+Data Definition:
+```sql
+create table PUBLIC.APP_USER
+(
+  ID       BIGINT not null primary key,
+  PASSWORD CHARACTER VARYING(255),
+  USERNAME CHARACTER VARYING(255)
+);
+
+create table PUBLIC.GAME
+(
+  NEXT_MOVE    TINYINT,
+  PLAYER1_TYPE TINYINT,
+  PLAYER2_TYPE TINYINT,
+  STATE        TINYINT,
+  APP_USER_ID  BIGINT,
+  ID           BIGINT not null primary key,
+  ROWS         JSON,
+  constraint FKT1UCX1TG677JTR30CQDLR16O5 foreign key (APP_USER_ID) references PUBLIC.APP_USER,
+  check ("NEXT_MOVE" BETWEEN 0 AND 1),
+  check ("PLAYER1_TYPE" BETWEEN 0 AND 1),
+  check ("PLAYER2_TYPE" BETWEEN 0 AND 1),
+  check ("STATE" BETWEEN 0 AND 3)
+);
+```
+
+Tic-tac-toe game state is persisted as JSON (an array of string arrays) to `GAME.ROWS` column. Example:
+```json
+[
+  ["","o","x"],
+  ["o","x",""],
+  ["x","",""]
+]
+```
+
 ## Screenshots
+
 ### Login Page
 <img src="docs/images/tictactoe-screenshot-login.png" style="height: 600px" alt="Tic-tac-toe app login screenshot" />
 
