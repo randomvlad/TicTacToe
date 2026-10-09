@@ -5,7 +5,10 @@
 [![CI Build](https://github.com/randomvlad/TicTacToe/actions/workflows/gradle.yml/badge.svg)](https://github.com/randomvlad/TicTacToe/actions/workflows/gradle.yml) [![CodeQL](https://github.com/randomvlad/TicTacToe/actions/workflows/codeql.yml/badge.svg)](https://github.com/randomvlad/TicTacToe/actions/workflows/codeql.yml) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/29cefa86b61a40a48649f34d88e9a069)](https://app.codacy.com/gh/randomvlad/TicTacToe?utm_source=github.com&utm_medium=referral&utm_content=randomvlad/TicTacToe&utm_campaign=Badge_Grade) [![codecov](https://codecov.io/github/randomvlad/tictactoe/graph/badge.svg?token=3IASBGMWTF)](https://codecov.io/github/randomvlad/tictactoe) [![Snyk Security Monitoring](https://img.shields.io/badge/Snyk-monitored-8A2BE2?logo=snyk)](https://snyk.io/test/github/randomvlad/TicTacToe) [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/randomvlad/TicTacToe/badge)](https://scorecard.dev/viewer/?uri=github.com/randomvlad/TicTacToe)
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/randomvlad/TicTacToe/blob/master/LICENSE.txt)
 
-A secured web app to play Tic-tac-toe against a dummy computer opponent.
+A secured web app to play tic-tac-toe against a computer opponent. 
+
+> [!Note]
+> Back in 2015, I was given a take-home interview test to create a tic-tac-toe game. Over the years I kept tinkering and expanding the project to a more "production grade" level (test coverage, user login, security scans, persistence layer, clean DRY code with careful consideration for modularity and best practices). The interview loop has long been closed, but the project took on a life of its own.
 
 ## Overview
 * Play a game on a 3x3 board with an option to go first or after the computer opponent.
