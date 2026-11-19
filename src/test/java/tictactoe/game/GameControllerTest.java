@@ -111,12 +111,8 @@ class GameControllerTest {
                 .param("new-game", String.valueOf(newGame))
                 .param("player-go-first", String.valueOf(playerGoFirst))
         ) // then
-                .hasStatusOk()
-                .hasViewName("index")
-                .model()
-                    .containsEntry("playerGoFirst", playerGoFirst)
-                    .containsEntry("playStatus", "IN_PROGRESS")
-                    .containsEntry("board", game.getRows());
+                .hasStatus3xxRedirection()
+                .hasRedirectedUrl("/");
 
         verify(mockUserRepository, only()).findByUsername(mockPrincipal.getName());
         verify(mockGameService, only()).create(appUser, playerGoFirst);
@@ -143,12 +139,8 @@ class GameControllerTest {
                 .param("new-game", String.valueOf(newGame))
                 .param("player-go-first", String.valueOf(playerGoFirst))
         ) // then
-                .hasStatusOk()
-                .hasViewName("index")
-                .model()
-                .containsEntry("playerGoFirst", playerGoFirst)
-                .containsEntry("playStatus", "IN_PROGRESS")
-                .containsEntry("board", game.getRows());
+                .hasStatus3xxRedirection()
+                .hasRedirectedUrl("/");
 
         verify(mockUserRepository, only()).findByUsername(mockPrincipal.getName());
         verify(mockGameService).create(appUser, playerGoFirst);
@@ -163,27 +155,88 @@ class GameControllerTest {
         AppUser appUser = new AppUser();
         when(mockUserRepository.findByUsername(any())).thenReturn(appUser);
 
-        Game lastGame = GameService.newGameInstance(appUser, false);
+        Game lastGame = GameService.newGameInstance(appUser, true);
         when(mockGameService.getLastGame(any())).thenReturn(lastGame);
+        when(mockGameService.takeTurn(any(), any())).thenReturn(true); // valid player move
 
         // when
-        assertThat(mockMvcTester.post()
-                .uri("/")
-                .principal(mockPrincipal)
-                .param("tile-id", tileId)
-        ) // then
-                .hasStatusOk()
-                .hasViewName("index")
-                .model()
-                .containsEntry("playerGoFirst", false)
-                .containsEntry("playStatus", "IN_PROGRESS")
-                .containsEntry("board", lastGame.getRows());
+        assertThat(postTurn(tileId))
+                // then
+                .hasStatus3xxRedirection()
+                .hasRedirectedUrl("/");
 
         verify(mockUserRepository, only()).findByUsername(mockPrincipal.getName());
         verify(mockGameService).getLastGame(appUser);
         verify(mockGameService).takeTurn(lastGame, tileId); // player move
         verify(mockGameService).takeTurnRandom(lastGame); // computer move
         verifyNoMoreInteractions(mockGameService);
+    }
+
+    @Test
+    void takeTurns_InvalidPlayerMove_NoComputerTurn() {
+        // given
+        String tileId = "1-1"; // e.g. tile already taken
+        AppUser appUser = new AppUser();
+        when(mockUserRepository.findByUsername(any())).thenReturn(appUser);
+
+        Game lastGame = GameService.newGameInstance(appUser, true);
+        when(mockGameService.getLastGame(any())).thenReturn(lastGame);
+        when(mockGameService.takeTurn(any(), any())).thenReturn(false); // move rejected
+
+        // when
+        assertThat(postTurn(tileId))
+                // then
+                .hasStatus3xxRedirection()
+                .hasRedirectedUrl("/");
+
+        verify(mockGameService).getLastGame(appUser);
+        verify(mockGameService).takeTurn(lastGame, tileId);
+        verifyNoMoreInteractions(mockGameService); // computer does not get a free move
+    }
+
+    @Test
+    void takeTurns_NoLastGame_RedirectWithoutTurns() {
+        // given
+        AppUser appUser = new AppUser();
+        when(mockUserRepository.findByUsername(any())).thenReturn(appUser);
+
+        Game noLastGame = null;
+        when(mockGameService.getLastGame(any())).thenReturn(noLastGame);
+
+        // when
+        assertThat(postTurn("0-1"))
+                // then
+                .hasStatus3xxRedirection()
+                .hasRedirectedUrl("/");
+
+        verify(mockGameService).getLastGame(appUser);
+        verifyNoMoreInteractions(mockGameService);
+    }
+
+    @Test
+    void takeTurns_NotHumanTurn_NoTurnsTaken() {
+        // given
+        AppUser appUser = new AppUser();
+        when(mockUserRepository.findByUsername(any())).thenReturn(appUser);
+
+        Game lastGame = GameService.newGameInstance(appUser, false); // computer is player 1 and moves next
+        when(mockGameService.getLastGame(any())).thenReturn(lastGame);
+
+        // when
+        assertThat(postTurn("0-1"))
+                // then
+                .hasStatus3xxRedirection()
+                .hasRedirectedUrl("/");
+
+        verify(mockGameService).getLastGame(appUser);
+        verifyNoMoreInteractions(mockGameService);
+    }
+
+    private MockMvcTester.MockMvcRequestBuilder postTurn(String tileId) {
+        return mockMvcTester.post()
+                .uri("/")
+                .principal(mockPrincipal)
+                .param("tile-id", tileId);
     }
 
     @Test

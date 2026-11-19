@@ -223,6 +223,86 @@ class GameServiceTest {
         verifyNoInteractions(mockRepository);
     }
 
+    @Test
+    void takeTurn_TileAlreadyTaken_AbortNoTurnTaken() {
+        // given
+        Game game = service.create(new AppUser(), true);
+        setRow(game, 1, "", "o", "");
+        Mockito.clearInvocations(mockRepository);
+
+        // when
+        boolean turnTaken = service.takeTurn(game, "1-1"); // try to overwrite computer's O with X
+
+        // then
+        assertThat(turnTaken).isFalse();
+        assertThat(game.getNextMove()).isEqualTo(PlayerNumber.PLAYER_1);
+        assertRows(//@formatter:off
+                game,
+                "", "", "",
+                "", "o", "",
+                "", "", ""
+        );//@formatter:on
+        verifyNoInteractions(mockRepository);
+    }
+
+    @Test
+    void takeTurn_TileIdOutOfBounds_AbortNoTurnTaken() {
+        // given
+        Game game = service.create(new AppUser(), true);
+        Mockito.clearInvocations(mockRepository);
+
+        // when
+        boolean turnTaken = service.takeTurn(game, "9-9");
+
+        // then
+        assertThat(turnTaken).isFalse();
+        assertThat(game.getNextMove()).isEqualTo(PlayerNumber.PLAYER_1);
+        assertThat(game.getRows()).isEqualTo(BoardUtil.createEmpty());
+        verifyNoInteractions(mockRepository);
+    }
+
+    @Test
+    void takeTurn_NonNumericOrNullTileId_AbortNoTurnTaken() {
+        // given
+        Game game = service.create(new AppUser(), true);
+        Mockito.clearInvocations(mockRepository);
+
+        // when / then
+        for (String tileId : new String[] {"a-b", "-1-0", "1-1-1", "", "99999999999-0", null}) {
+            assertThat(service.takeTurn(game, tileId)).as("tileId: %s", tileId).isFalse();
+        }
+        assertThat(game.getRows()).isEqualTo(BoardUtil.createEmpty());
+        verifyNoInteractions(mockRepository);
+    }
+
+    @Test
+    void takeTurn_ValidMove_ReturnTrue() {
+        // given
+        Game game = service.create(new AppUser(), true);
+
+        // when
+        boolean turnTaken = service.takeTurn(game, "2-2");
+
+        // then
+        assertThat(turnTaken).isTrue();
+    }
+
+    @Test
+    void isHumanTurn_GameStates_ExpectedResult() {
+        Game playerFirst = GameService.newGameInstance(new AppUser(), true);
+        assertThat(GameService.isHumanTurn(playerFirst)).isTrue();
+
+        Game computerFirst = GameService.newGameInstance(new AppUser(), false);
+        assertThat(GameService.isHumanTurn(computerFirst)).isFalse();
+
+        computerFirst.setNextMove(PlayerNumber.PLAYER_2);
+        assertThat(GameService.isHumanTurn(computerFirst)).isTrue();
+
+        playerFirst.setState(GameState.DRAW);
+        playerFirst.setNextMove(null);
+        assertThat(GameService.isHumanTurn(playerFirst)).isFalse();
+    }
+
     /**
      * Helper assert method to verify expected game rows.
      */
