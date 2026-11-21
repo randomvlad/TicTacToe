@@ -30,12 +30,18 @@ A password-protected web app to play tic-tac-toe against a simple computer oppon
 | __Build Tool__ | Gradle v9.8 |
 
 ## Install & Run
-* Install Java 27.
-  * Tip: use [SDKMAN!](https://sdkman.io/install/) to easily install and switch between Java versions and distributions.
-* Clone repo: `git clone https://github.com/randomvlad/TicTacToe.git`
-* Navigate `cd TicTacToe` and run applicable [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper) command:
-  * macOS/Linux: `./gradlew bootRun`
-  * Windows: `gradlew.bat bootRun`
+* Clone repo `git clone https://github.com/randomvlad/TicTacToe.git` and navigate `cd TicTacToe`
+* Pick one of the following installation options:
+  * **Option 1**: Install Java 27. Tip: use [SDKMAN!](https://sdkman.io/install/) to easily manage different Java versions.
+    * Run applicable [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper) command:
+      * macOS/Linux: `./gradlew bootRun`
+      * Windows: `gradlew.bat bootRun`
+  * **Option 2**: Install Docker, e.g. [Docker Desktop](https://docs.docker.com/get-docker/). Tip: on macOS, a lightweight free alternative is [Colima](https://github.com/abiosoft/colima).
+    *  Build the image and run the container:
+      ```shell
+      docker build -t tictactoe .
+      docker run --rm -p 8080:8080 tictactoe
+      ``` 
 * Once app is running, go to [http://localhost:8080/tictactoe/](http://localhost:8080/tictactoe/).
 * Log in with username `rick` or `morty` and password `pickle` to play a game.
 * To stop the app, press `Ctrl+C` in the terminal.
