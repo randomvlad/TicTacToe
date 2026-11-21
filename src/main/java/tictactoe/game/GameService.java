@@ -1,6 +1,7 @@
 package tictactoe.game;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,8 @@ import tictactoe.user.dao.model.AppUser;
 @Service
 @RequiredArgsConstructor
 public class GameService {
+
+    private static final Pattern TILE_ID_PATTERN = Pattern.compile("\\d{1,2}-\\d{1,2}");
 
     private final GameRepository gameRepository;
 
@@ -44,14 +47,33 @@ public class GameService {
         }
     }
 
-    public void takeTurn(Game game, String tileId) {
+    /**
+     * Mark tile {@code tileId} for the player whose turn it is.
+     *
+     * @param tileId tile ID in format "{rowIndex}-{columnIndex}". Example: "0-1" (row 0, column 1).
+     * @return {@code true} if the turn was taken. {@code false} (and game is left unchanged) if game is over,
+     * {@code tileId} is malformed or out of bounds, or the tile is already taken.
+     */
+    public boolean takeTurn(Game game, String tileId) {
         if (game.getState() != GameState.IN_PROGRESS) {
-            return;
+            return false;
+        }
+
+        if (tileId == null || !TILE_ID_PATTERN.matcher(tileId).matches()) {
+            return false;
         }
 
         String[] indices = tileId.split("-");
-        if (indices.length != 2) {
-            return;
+        int rowIndex = Integer.parseInt(indices[0]);
+        int columnIndex = Integer.parseInt(indices[1]);
+
+        List<List<String>> rows = game.getRows();
+        if (rowIndex >= rows.size() || columnIndex >= rows.get(rowIndex).size()) {
+            return false;
+        }
+
+        if (!rows.get(rowIndex).get(columnIndex).isEmpty()) {
+            return false; // tile already taken
         }
 
         BoardTile tile;
@@ -63,9 +85,7 @@ public class GameService {
             game.setNextMove(PlayerNumber.PLAYER_1);
         }
 
-        int rowIndex = Integer.parseInt(indices[0]);
-        int columnIndex = Integer.parseInt(indices[1]);
-        game.getRows().get(rowIndex).set(columnIndex, tile.getValue());
+        rows.get(rowIndex).set(columnIndex, tile.getValue());
 
         GameState state = evaluateGameState(game.getRows());
         game.setState(state);
@@ -74,6 +94,20 @@ public class GameService {
         }
 
         gameRepository.save(game);
+        return true;
+    }
+
+    /**
+     * @return {@code true} if game is in progress and the next move belongs to a human player.
+     */
+    public static boolean isHumanTurn(Game game) {
+        if (game.getState() != GameState.IN_PROGRESS || game.getNextMove() == null) {
+            return false;
+        }
+        PlayerType nextPlayerType = game.getNextMove() == PlayerNumber.PLAYER_1
+                ? game.getPlayer1Type()
+                : game.getPlayer2Type();
+        return nextPlayerType == PlayerType.HUMAN;
     }
 
     public static Game newGameInstance(AppUser appUser, boolean playerGoFirst) {

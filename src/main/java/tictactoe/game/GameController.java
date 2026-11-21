@@ -46,10 +46,13 @@ public class GameController {
      * vs take turns) submit to the same endpoint. One natural evolution (path not taken to keep things simple) is to
      * introduce a RESTful API with separate endpoints. Consequently, the frontend paradigm would need to change from
      * server-side rendering (SSR) to client-side rendering (CSR).
+     * <p>
+     * Follows the Post/Redirect/Get pattern: always redirects to {@code GET /}, which renders the latest game state.
+     * This keeps a browser refresh from resubmitting the move. Invalid moves (game over, malformed tile ID, tile
+     * already taken) are ignored, and the computer only takes its turn after a valid player move.
      */
     @PostMapping("/")
     public String takeTurns(
-            Model model,
             Principal principal,
             @RequestParam("tile-id") String tileId,
             @RequestParam(value = "new-game", required = false, defaultValue = "false") boolean newGame,
@@ -57,23 +60,22 @@ public class GameController {
     ) {
         AppUser appUser = getAppUser(principal);
 
-        Game game;
         if (newGame) {
-            game = gameService.create(appUser, playerGoFirst);
+            Game game = gameService.create(appUser, playerGoFirst);
 
             if (!playerGoFirst) {
                 // give computer a small advantage by always placing X in the center as its first move
                 gameService.takeTurn(game, "1-1");
             }
         } else {
-            game = gameService.getLastGame(appUser);
-            gameService.takeTurn(game, tileId); // Player Turn
-            gameService.takeTurnRandom(game); // Computer Turn
+            Game game = gameService.getLastGame(appUser);
+            // no game yet: nothing to play, GET / creates one
+            if (game != null && GameService.isHumanTurn(game) && gameService.takeTurn(game, tileId)) { // Player Turn
+                gameService.takeTurnRandom(game); // Computer Turn
+            }
         }
 
-        setModelGameAttributes(model, game);
-
-        return "index";
+        return "redirect:/";
     }
 
     static void setModelGameAttributes(Model model, Game game) {
