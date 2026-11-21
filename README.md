@@ -37,11 +37,8 @@ A password-protected web app to play tic-tac-toe against a simple computer oppon
       * macOS/Linux: `./gradlew bootRun`
       * Windows: `gradlew.bat bootRun`
   * **Option 2**: Install Docker, e.g. [Docker Desktop](https://docs.docker.com/get-docker/). Tip: on macOS, a lightweight free alternative is [Colima](https://github.com/abiosoft/colima).
-    *  Build the image and run the container:
-      ```shell
-      docker build -t tictactoe .
-      docker run --rm -p 8080:8080 tictactoe
-      ``` 
+    * Build the image: `docker build -t tictactoe .`
+    * Run the container: `docker run --rm -p 8080:8080 tictactoe`
 * Once app is running, go to [http://localhost:8080/tictactoe/](http://localhost:8080/tictactoe/).
 * Log in with username `rick` or `morty` and password `pickle` to play a game.
 * To stop the app, press `Ctrl+C` in the terminal.
