@@ -39,7 +39,7 @@ class BoardUtil {
         for (int rowIndex = 0; rowIndex < rows.size(); rowIndex++) {
             List<String> row = rows.get(rowIndex);
 
-            for (int columnIndex = 0; columnIndex < rows.size(); columnIndex++) {
+            for (int columnIndex = 0; columnIndex < row.size(); columnIndex++) {
                 String tileValue = row.get(columnIndex);
                 if (tileValue.isEmpty()) {
                     available.add(rowIndex + "-" + columnIndex);
